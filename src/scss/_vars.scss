@@ -1,5 +1,19 @@
-// COLORS
-:root {
-  --color-black: #000;
-  --color-white: #fff;
-}
+// colors
+$color-white: #fff;
+$color-main: #484283;
+$color-accent: #f14f4f;
+$color-accent-hover: #cc4949;
+$color-border: rgba(255, 255, 255, 0.5);
+
+// smth
+$grid-gap: 20px;
+$main-offset: 40px;
+$second-offset: 20px;
+$paddings: 15px;
+
+// fonts
+$font-family: "Intro", sans-serif;
+$font-middle-high: 700 30px / 140% $font-family;
+$font-middle: 400 16px / 140% $font-family;
+$font-middle-sm: 600 16px / 140% $font-family;
+$font-small: 400 14px / 140% $font-family;
