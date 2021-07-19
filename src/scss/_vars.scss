@@ -3,17 +3,26 @@ $color-white: #fff;
 $color-main: #484283;
 $color-accent: #f14f4f;
 $color-accent-hover: #cc4949;
+$color-text: #444b58;
+$color-text-hover: #31343c;
 $color-border: rgba(255, 255, 255, 0.5);
+$color-bg: #fff4ee;
+$color-cameo: #dbbba9;
+$color-gray: #b2b5bb;
 
-// smth
+// offsets / smth
 $grid-gap: 20px;
 $main-offset: 40px;
 $second-offset: 20px;
+$big-offset: 60px;
+$small-offset: 10px;
 $paddings: 15px;
 
 // fonts
 $font-family: "Intro", sans-serif;
-$font-middle-high: 700 30px / 140% $font-family;
-$font-middle: 400 16px / 140% $font-family;
-$font-middle-sm: 600 16px / 140% $font-family;
-$font-small: 400 14px / 140% $font-family;
+$font-middle-bold: 700 30px / 140% $font-family;
+$font-prehigh-book: 400 24px / 100% $font-family;
+$font-prehigh-regular: 600 20px / 100% $font-family;
+$font-middle-book: 400 16px / 140% $font-family;
+$font-middle-regular: 600 16px / 140% $font-family;
+$font-book: 400 14px / 140% $font-family;

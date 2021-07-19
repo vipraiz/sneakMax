@@ -4,6 +4,7 @@
   right: 0;
   z-index: 100;
   width: 100%;
+  background-color: $color-main;
 
   &__container {
     position: relative;
@@ -14,7 +15,7 @@
       content: "";
       position: absolute;
       left: 50%;
-      bottom: 0;
+      bottom: -1px;
       width: calc(100% - #{$paddings} * 2);
       height: 1px;
       background-color: $color-border;
@@ -30,5 +31,10 @@
     display: flex;
     justify-content: flex-end;
     grid-column: 10 span;
+  }
+
+  &__cart {
+    display: flex;
+    align-items: center;
   }
 }

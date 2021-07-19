@@ -11,7 +11,7 @@ html {
 body {
   margin: 0;
   font-family: "Intro", sans-serif;
-  background-color: var(--color-white);
+  background-color: $color-white;
 }
 
 img {
@@ -62,8 +62,8 @@ a {
 
 .container {
   margin: 0 auto;
-  padding: 0 15px;
-  max-width: 1210px;
+  padding: 0 $paddings;
+  max-width: calc(1180px + #{$paddings} * 2);
 }
 
 .js-focus-visible :focus:not(.focus-visible) {
@@ -79,7 +79,7 @@ a {
 .btn {
   border-radius: 4px;
   padding: 22px 47px;
-  font: $font-middle-sm;
+  font: $font-middle-regular;
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 
   &--primary {
@@ -90,4 +90,50 @@ a {
       background-color: $color-accent-hover;
     }
   }
+
+  &--secondary {
+    color: $color-white;
+    background-color: $color-text;
+
+    &:hover {
+      background-color: $color-text-hover;
+    }
+  }
+}
+
+.title {
+  margin: 0;
+  font: $font-middle-bold;
+  color: $color-text;
+}
+
+.custom-checkbox {
+  @include custom-checkbox;
+
+  &__content {
+    padding-left: 35px;
+    font: $font-middle-book;
+    color: $color-text;
+
+    &::before {
+      top: -1px;
+      border-color: $color-cameo;
+      border-radius: 4px;
+      width: 24px;
+      height: 24px;
+    }
+
+    &::after {
+      top: -1px;
+      width: 24px;
+      height: 24px;
+      background-image: url(../img/check.svg);
+      background-size: 15px 12px;
+      transition: opacity 0.2s ease-in-out;
+    }
+  }
+}
+
+.custom-checkbox__field:focus + .custom-checkbox__content::before {
+  outline: none;
 }

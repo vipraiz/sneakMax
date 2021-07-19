@@ -5,13 +5,14 @@
   }
 
   &__item {
-    &:not(:last-child) {
-      margin-right: $main-offset;
-    }
+    // &:not(:last-child) {
+    //   margin-right: $main-offset;
+    // }
+    margin-right: $main-offset;
   }
 
   &__link {
-    font: $font-small;
+    font: $font-book;
     color: $color-white;
   }
 }

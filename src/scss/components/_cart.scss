@@ -1,8 +1,7 @@
 .cart {
-  margin-left: $main-offset;
-
   &__btn {
     position: relative;
+    margin-left: $small-offset;
     width: 20px;
     height: 20px;
 
@@ -12,6 +11,11 @@
       height: 100%;
       object-fit: cover;
     }
+  }
+
+  &__text-btn {
+    font: $font-book;
+    color: $color-white;
   }
 
   &__count {
@@ -24,7 +28,7 @@
     border-radius: 50%;
     height: 16px;
     min-width: 16px;
-    font: $font-small;
+    font: $font-book;
     color: $color-white;
     background-color: $color-accent;
   }
