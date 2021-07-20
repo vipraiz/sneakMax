@@ -5,10 +5,9 @@
   }
 
   &__item {
-    // &:not(:last-child) {
-    //   margin-right: $main-offset;
-    // }
-    margin-right: $main-offset;
+    &:not(:last-child) {
+      margin-right: $main-offset;
+    }
   }
 
   &__link {

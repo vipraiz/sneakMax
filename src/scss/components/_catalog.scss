@@ -53,6 +53,8 @@
   grid-template-columns: repeat(9, 1fr);
 
   &__item {
+    display: grid;
+    grid-auto-flow: row;
     grid-column: 3 span;
   }
 }

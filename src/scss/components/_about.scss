@@ -1,5 +1,66 @@
 .about {
+  position: relative;
+  color: $color-white;
   background-color: $color-main;
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__figure {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  &__left {
+    margin-right: $second-offset;
+    width: 40%;
+    transform: translateY($main-offset);
+  }
+
+  &__title {
+    color: $color-white;
+  }
+
+  &__quote {
+    display: block;
+    padding-bottom: $small-offset;
+    max-width: 380px;
+    font: $font-middle-book;
+
+    &::before,
+    &::after {
+      content: "";
+    }
+  }
+
+  &__author {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font: $font-prehigh-regular;
+
+    &::before {
+      content: "";
+      margin-right: $second-offset;
+      width: 30px;
+      height: 3px;
+      background-color: $color-white;
+    }
+  }
+
   &__image {
+    // max-width: 57.63%;
+    clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
 }

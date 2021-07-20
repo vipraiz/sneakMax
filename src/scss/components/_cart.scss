@@ -1,12 +1,25 @@
 .cart {
   &__btn {
+    display: flex;
+    align-items: center;
+  }
+
+  &__btn-text {
+    margin-right: $small-offset;
+    font: $font-book;
+    color: $color-white;
+  }
+
+  &__img {
     position: relative;
-    margin-left: $small-offset;
+    display: inline-block;
     width: 20px;
     height: 20px;
 
     svg {
-      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
