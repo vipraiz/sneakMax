@@ -99,6 +99,18 @@ a {
       background-color: $color-text-hover;
     }
   }
+
+  &--thirdly {
+    border: 1px solid $color-text;
+    padding: 13px 41px;
+    color: $color-text;
+    background-color: transparent;
+
+    &:hover {
+      color: $color-white;
+      background-color: $color-text;
+    }
+  }
 }
 
 .title {
@@ -136,4 +148,15 @@ a {
 
 .custom-checkbox__field:focus + .custom-checkbox__content::before {
   outline: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  margin: -1px;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  border: none;
+  clip: rect(0 0 0 0);
 }

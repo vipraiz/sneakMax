@@ -1,9 +1,21 @@
 const quizData = [
   {
     number: 1,
-    title: "На какую сумму вы рассчитываете?",
+    title: "Какой тип кроссовок рассматриваете?",
     answer_alias: "type",
     answers: [
+      {
+        answer_title: "кеды",
+        type: "checkbox",
+      },
+      {
+        answer_title: "кеды",
+        type: "checkbox",
+      },
+      {
+        answer_title: "кеды",
+        type: "checkbox",
+      },
       {
         answer_title: "кеды",
         type: "checkbox",
@@ -52,18 +64,7 @@ const quizData = [
     answers: [
       {
         answer_title: "Введите сообщение",
-        type: "text",
-      },
-    ],
-  },
-  {
-    number: 4,
-    title: "Уточните какие-либо моменты",
-    answer_alias: "phone",
-    answers: [
-      {
-        answer_title: "Введите телефон",
-        type: "text",
+        type: "textarea",
       },
     ],
   },
@@ -73,31 +74,54 @@ const quizTemplate = (data = [], dataLength = 0, options) => {
   const { number, title } = data;
   const { nextBtnText } = options;
   const answers = data.answers.map((item) => {
+    if (item.type === "checkbox") {
+      return `
+      <li class="quiz-question__item">
+        <img src="img/sneaker.jpg" alt="">
+        <label class="custom-checkbox quiz-question__label">
+          <input type="${item.type}"
+            class="custom-checkbox__field quiz-question__answer"
+            data-valid="false"
+            name="${data.answer_alias}"
+            ${item.type == "text" ? 'placeholder="Введите ваш вариант"' : ""}
+            value="${item.type !== "text" ? item.answer_title : ""}">
+          <span class="custom-checkbox__content">${item.answer_title}</span>
+        </label>
+      </li>`;
+    }
+    if (item.type === "textarea") {
+      return `
+      <li class="quiz-question__item">
+        <label class="quiz-question__label">
+          <textarea class="quiz-question__message" placeholder="${item.answer_title}"></textarea>
+        </label>
+      </li>`;
+    }
     return `
-			<label class="quiz-question__label">
-				<input type="${
-          item.type
-        }" data-valid="false" class="quiz-question__answer" name="${
-      data.answer_alias
-    }" ${
-      item.type == "text" ? 'placeholder="Введите ваш вариант"' : ""
-    } value="${item.type !== "text" ? item.answer_title : ""}">
-				<span>${item.answer_title}</span>
-			</label>
-		`;
+    <li class="quiz-question__item">
+      <label class="quiz-question__label">
+        <input type="${item.type}"
+          data-valid="false"
+          class="quiz-question__answer"
+          name="${data.answer_alias}"
+          ${item.type == "text" ? 'placeholder="Введите ваш вариант"' : ""}
+          value="${item.type !== "text" ? item.answer_title : ""}">
+        <span>${item.answer_title}</span>
+      </label>
+    </li>`;
   });
 
   return `
-		<div class="quiz__content">
-			<div class="quiz__questions">${number} из ${dataLength}</div>
-			<div class="quiz-question">
-				<h3 class="quiz-question__title">${title}</h3>
-				<div class="quiz-question__answers">
-					${answers.join("")}
-				</div>
-				<button type="button" class="quiz-question__btn" data-next-btn>${nextBtnText}</button>
-			</div>
-		</div>
+    <div class="quiz-questions">
+      <h3 class="quiz-question__title">${title}</h3>
+      <ul class="quiz-question__answers list-reset">
+        ${answers.join("")}
+      </ul>
+      <div class="quiz-bottom">
+        <div class="quiz-question__count">${number} из ${dataLength}</div>
+        <button type="button" class="btn btn-reset btn--thirdly quiz-question__btn" data-next-btn>${nextBtnText}</button>
+      </div>
+    </div>
 	`;
 };
 
@@ -136,17 +160,18 @@ class Quiz {
         );
 
         if (this.counter + 1 == this.dataLength) {
-          this.$el.insertAdjacentHTML(
-            "beforeend",
-            `<button type="button" data-send>${this.options.sendBtnText}</button>`
-          );
-          this.$el.querySelector("[data-next-btn]").remove();
+          // this.$el
+          //   .querySelector(".quiz-bottom")
+          //   .insertAdjacentHTML(
+          //     "beforeend",
+          //     `<button type="button" data-send>${this.options.sendBtnText}</button>`
+          //   );
+          // this.$el.querySelector("[data-next-btn]").remove();
         }
       } else {
-        console.log("А все! конец!");
+        document.querySelector(".quiz-questions").style.display = "none";
+        document.querySelector(".asd").style.display = "block";
       }
-    } else {
-      console.log("Не валидно!");
     }
   }
 
@@ -179,6 +204,16 @@ class Quiz {
 
   valid() {
     let isValid = false;
+
+    let textarea = this.$el.querySelector("textarea");
+
+    if (textarea) {
+      if (textarea.value.length > 0) {
+        isValid = true;
+        return isValid;
+      }
+    }
+
     let elements = this.$el.querySelectorAll("input");
     elements.forEach((el) => {
       switch (el.nodeName) {
@@ -272,7 +307,7 @@ class Quiz {
   }
 }
 
-window.quiz = new Quiz(".quiz-content", quizData, {
-  nextBtnText: "Далее",
+window.quiz = new Quiz(".quiz-form .quiz-questions", quizData, {
+  nextBtnText: "Следующий шаг",
   sendBtnText: "Отправить",
 });
