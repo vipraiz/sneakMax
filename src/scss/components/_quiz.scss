@@ -63,3 +63,14 @@
 .asd {
   display: none;
 }
+
+.custom-checkbox.quiz-question__label {
+  cursor: pointer;
+
+  .custom-checkbox__content {
+    &::before,
+    &::after {
+      top: 17px;
+    }
+  }
+}

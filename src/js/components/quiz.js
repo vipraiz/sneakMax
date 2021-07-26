@@ -77,8 +77,8 @@ const quizTemplate = (data = [], dataLength = 0, options) => {
     if (item.type === "checkbox") {
       return `
       <li class="quiz-question__item">
-        <img src="img/sneaker.jpg" alt="">
         <label class="custom-checkbox quiz-question__label">
+          <img src="img/sneaker.jpg" alt="">
           <input type="${item.type}"
             class="custom-checkbox__field quiz-question__answer"
             data-valid="false"
@@ -139,7 +139,6 @@ class Quiz {
   }
 
   init() {
-    console.log("init!");
     this.$el.innerHTML = quizTemplate(
       this.data[this.counter],
       this.dataLength,
@@ -148,8 +147,6 @@ class Quiz {
   }
 
   nextQuestion() {
-    console.log("next question!");
-
     if (this.valid()) {
       if (this.counter + 1 < this.dataLength) {
         this.counter++;

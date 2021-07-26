@@ -1,0 +1,40 @@
+.contacts {
+  padding: $big-offset 0;
+  background-color: #f3f6f6;
+
+  &__title {
+    margin-bottom: $big-offset;
+  }
+
+  &__item {
+    margin-bottom: $main-offset;
+    font-style: normal;
+  }
+
+  &__subtitle {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    margin-bottom: $second-offset;
+    font: $font-book;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: $color-gray;
+
+    &_main {
+      margin-bottom: $main-offset;
+    }
+  }
+
+  &__address {
+    display: block;
+    color: $color-text;
+  }
+
+  &__phone {
+    display: inline-block;
+    margin-bottom: $small-offset;
+    font: $font-middle-bold;
+    color: $color-text;
+  }
+}

@@ -1,0 +1,66 @@
+.faq {
+  padding: $big-offset 0;
+
+  &__title {
+    margin-bottom: $main-offset;
+  }
+
+  &__list {
+    margin: 0 auto;
+    padding: 0 $second-offset;
+    max-width: calc(880px + 2 * #{$second-offset});
+  }
+}
+
+.faq-accordion {
+  border-bottom: 1px solid $color-text;
+  cursor: pointer;
+
+  &__control {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 0;
+    width: 100%;
+    font: $font-prehigh-regular;
+    text-align: left;
+    color: $color-text;
+  }
+
+  &__icon {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background-image: url("../img/cross.svg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  &__content {
+    overflow: hidden;
+    padding-right: $big-offset;
+    padding-bottom: 0;
+    max-height: 0;
+    box-sizing: content-box;
+    font: $font-middle-book;
+    color: rgba($color: #242424, $alpha: 0.5);
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    will-change: max-height;
+  }
+
+  &:first-child {
+    border-top: 1px solid $color-text;
+  }
+}
+
+.open .faq-accordion__icon {
+  transform: rotate(45deg);
+}
+
+.open .faq-accordion__content {
+  padding-bottom: 18px;
+  opacity: 1;
+}
