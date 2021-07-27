@@ -2,6 +2,17 @@
   padding: $big-offset 0;
   background-color: #f3f6f6;
 
+  &__container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  &__text {
+    flex: 1 1 auto;
+    margin-right: $second-offset;
+  }
+
   &__title {
     margin-bottom: $big-offset;
   }
@@ -36,5 +47,10 @@
     margin-bottom: $small-offset;
     font: $font-middle-bold;
     color: $color-text;
+  }
+
+  &__map {
+    width: 680px;
+    height: 500px;
   }
 }

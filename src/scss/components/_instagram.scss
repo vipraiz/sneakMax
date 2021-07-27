@@ -1,0 +1,86 @@
+.instagram {
+  padding: $big-offset 0;
+
+  &__container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  &__left {
+    // flex-shrink: 0;
+    // width: 380px;
+    flex: 0 0 380px;
+    margin-right: $second-offset;
+    border-radius: 4px;
+    color: $color-white;
+    background-color: $color-main;
+  }
+
+  &__title {
+    margin-bottom: $second-offset;
+    color: $color-white;
+  }
+
+  &__descr {
+    margin: 0;
+    margin-bottom: $main-offset;
+    max-width: 260px;
+    font: $font-middle-book;
+    text-align: center;
+  }
+
+  &__input {
+    margin-bottom: $small-offset;
+  }
+
+  &__btn {
+    width: 100%;
+  }
+
+  &__right {
+    // width: calc(100% - (380px + #{$small-offset}));
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__link {
+    display: inline-block;
+    margin-bottom: $second-offset;
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 160px);
+    gap: 15px;
+  }
+
+  &__item {
+    overflow: hidden;
+    border-radius: 4px;
+    width: 100%;
+    height: 100%;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &_big {
+      grid-column: 2 span;
+      grid-row: 2 span;
+    }
+  }
+}
+
+.callback-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: $main-offset $second-offset;
+}

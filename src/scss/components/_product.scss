@@ -60,14 +60,13 @@
   }
 
   &__title {
-    justify-self: start;
     margin-bottom: $small-offset;
     font: $font-middle-book;
     line-height: 1;
     color: $color-text;
   }
 
-  &__prise {
+  &__price {
     align-self: flex-end;
     font: $font-prehigh-regular;
     color: $color-text;
