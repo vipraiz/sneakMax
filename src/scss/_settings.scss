@@ -147,7 +147,7 @@ a {
 }
 
 .custom-checkbox__field:focus + .custom-checkbox__content::before {
-  outline: none;
+  outline-color: initial;
 }
 
 .visually-hidden {

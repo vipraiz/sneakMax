@@ -1,15 +1,49 @@
 const rangeSlider = document.getElementById("range-slider");
 
 if (rangeSlider) {
+  let minPrice = 99999,
+    maxPrice = 1;
+
+  const setRange = () => {
+    fetch("../data/data.json")
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        let dataLength = data.length;
+
+        for (let i = 0; i < dataLength; i++) {
+          let item = data[i];
+
+          if (item.price > maxPrice) {
+            maxPrice = item.price;
+          } else if (item.price < minPrice) {
+            minPrice = item.price;
+          }
+        }
+
+        rangeSlider.noUiSlider.updateOptions({
+          range: {
+            min: minPrice,
+            max: maxPrice,
+          },
+        });
+
+        rangeSlider.noUiSlider.set([minPrice, maxPrice]);
+      });
+  };
+
   noUiSlider.create(rangeSlider, {
-    start: [1850, 25768],
+    start: [minPrice, minPrice],
     connect: true,
     step: 1,
     range: {
-      min: [1850],
-      max: [25768],
+      min: minPrice,
+      max: maxPrice,
     },
   });
+
+  setRange();
 
   const input0 = document.getElementById("input-0");
   const input1 = document.getElementById("input-1");

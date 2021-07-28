@@ -7,6 +7,11 @@ const prodModal = document.querySelector(
 let prodQuantity = 3;
 let dataLength = null;
 
+const prodSlider = new Swiper(".modal-slider__container", {
+  slidesPerView: 1,
+  spaceBetween: 20,
+});
+
 if (catalogList) {
   const loadProducts = (quantity = 3) => {
     fetch("../data/data.json")
@@ -64,6 +69,8 @@ if (catalogList) {
             const openBtnId = modal.previousActiveElement.dataset.id;
 
             loadModalData(openBtnId);
+
+            prodSlider.update();
           },
         });
       });
@@ -77,7 +84,7 @@ if (catalogList) {
         return response.json();
       })
       .then((data) => {
-        prodModal.innerHTML = "";
+        // prodModal.innerHTML = "";
 
         for (let dataItem of data) {
           if (dataItem.id == id) {

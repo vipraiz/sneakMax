@@ -173,7 +173,6 @@ class Quiz {
   }
 
   events() {
-    console.log("events!");
     this.$el.addEventListener("click", (e) => {
       if (e.target == document.querySelector("[data-next-btn]")) {
         this.addToSend();
