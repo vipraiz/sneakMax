@@ -52,3 +52,8 @@
   opacity: 0.4;
   pointer-events: none;
 }
+
+/* Remove outline for non-keyboard :focus */
+*:focus:not(.focus-visible) + .custom-checkbox__content::before {
+  outline: none;
+}

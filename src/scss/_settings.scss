@@ -8,6 +8,10 @@ html {
   box-sizing: inherit;
 }
 
+*:focus:not(.focus-visible) {
+  outline: none;
+}
+
 body {
   margin: 0;
   font-family: "Intro", sans-serif;
@@ -66,9 +70,9 @@ a {
   max-width: calc(1180px + #{$paddings} * 2);
 }
 
-.js-focus-visible :focus:not(.focus-visible) {
-  outline: none;
-}
+// .js-focus-visible :focus:not(.focus-visible) {
+//   outline: none;
+// }
 
 .grid {
   display: grid;
@@ -82,16 +86,21 @@ a {
   font: $font-middle-regular;
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 
-  &--primary {
+  &_primary {
     color: $color-white;
     background-color: $color-accent;
 
     &:hover {
       background-color: $color-accent-hover;
     }
+
+    &:disabled {
+      background-color: $color-accent-disabled;
+      opacity: 0.7;
+    }
   }
 
-  &--secondary {
+  &_secondary {
     color: $color-white;
     background-color: $color-text;
 
@@ -100,7 +109,7 @@ a {
     }
   }
 
-  &--thirdly {
+  &_thirdly {
     border: 1px solid $color-text;
     padding: 13px 41px;
     color: $color-text;
