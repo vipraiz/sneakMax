@@ -23,15 +23,48 @@
         </ul>
       </nav>
       <div class="cart header__cart">
-        <button class="btn-reset cart__btn">
-          <div class="cart__btn-text">Корзина</div>
-          <div class="cart__img">
+        <button class="btn-reset cart__btn" disabled>
+          <span class="cart__btn-text">Корзина</span>
+          <span class="cart__img">
             <svg>
               <use xlink:href="img/sprite.svg#cart"></use>
             </svg>
-            <div class="cart__count">1</div>
-          </div>
+          <span class="cart__count"></span>
         </button>
+        <!-- <div class="cart__element"></div> -->
+        <div class="mini-cart">
+          <div class="mini-cart__top" data-simplebar>
+            <ul class="mini-cart__list list-reset">
+              <!-- <li class="mini-cart__item">
+                <article class="mini-cart__product mini-product">
+                  <div class="mini-product__image">
+                    <img src="img/product-1.jpg" alt="">
+                  </div>
+                  <div class="mini-product__content">
+                    <div class="mini-product__text">
+                      <button class="mini-product__title btn-reset">Женские кроссовки Puma Force 1 Shadow</button>
+                      <span class="mini-product__price">8 678 р</span>
+                    </div>
+                    <button class="mini-product__delete btn-reset" aria-label="Удалить товар">
+                      <svg>
+                        <use xlink:href="img/sprite.svg#trash"></use>
+                      </svg>
+                    </button>
+                  </div>
+                </article>
+              </li> -->
+            </ul>
+          </div>
+          <div class="mini-cart__bottom">
+            <div class="mini-cart__total">
+              <span class="mini-cart__txt">Итого:</span>
+              <div class="span mini-cart__summ">0 р</div>
+            </div>
+            <button class="btn-reset btn btn_primary mini-cart__btn" data-graph-path="cart-modal">
+              Перейти в корзину
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -1,13 +1,31 @@
 .cart {
+  // position: relative;
+
   &__btn {
     display: flex;
     align-items: center;
+
+    &:disabled {
+      opacity: 0.7;
+      pointer-events: none;
+    }
   }
+
+  // &__element {
+  //   position: absolute;
+  //   right: 0;
+  //   bottom: -100%;
+  //   width: 480px;
+  //   height: calc(69.6px - 100%);
+  //   background-color: #fff;
+  //   transform: translateX(-0%);
+  // }
 
   &__btn-text {
     margin-right: $small-offset;
     font: $font-book;
     color: $color-white;
+    pointer-events: none;
   }
 
   &__img {
@@ -15,6 +33,7 @@
     display: inline-block;
     width: 20px;
     height: 20px;
+    pointer-events: none;
 
     svg {
       position: absolute;
@@ -44,5 +63,84 @@
     font: $font-book;
     color: $color-white;
     background-color: $color-accent;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none;
+
+    &_visible {
+      opacity: 1;
+    }
+  }
+}
+
+.mini-cart {
+  position: absolute;
+  right: $small-offset;
+  top: 100%;
+  overflow: hidden;
+  width: 480px;
+  max-height: 0;
+  box-shadow: 5px 5px 10px 5px rgba(0, 13, 84, 0.1);
+  color: #4d4d4d;
+  background-color: $color-white;
+  opacity: 0;
+  visibility: hidden;
+  transform-origin: top;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out,
+    max-height 0.6s ease-in-out;
+
+  &__top {
+    max-height: 323px;
+
+    .simplebar-track.simplebar-vertical {
+      right: 5px;
+      top: 20px;
+      bottom: 20px;
+      border-radius: 5px;
+      width: 4px;
+      background: rgba(77, 77, 77, 0.1);
+    }
+
+    .simplebar-scrollbar {
+      &::before {
+        left: 0;
+        right: auto;
+        border-radius: 5px;
+        width: 4px;
+        background: rgba(77, 77, 77, 0.2);
+        opacity: 1;
+      }
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: $second-offset;
+    box-shadow: 0 -4px 10px rgba(0, 13, 84, 0.1);
+    background-color: $color-white;
+  }
+
+  &__txt {
+    display: block;
+    margin-bottom: $small-offset;
+    font: $font-book;
+  }
+
+  &__summ {
+    font: $font-prehigh-regular;
+    font-weight: 700;
+  }
+
+  &__btn {
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  &_visible {
+    max-height: 600px;
+    opacity: 1;
+    visibility: visible;
   }
 }

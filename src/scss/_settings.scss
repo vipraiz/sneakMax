@@ -18,6 +18,11 @@ body {
   background-color: $color-white;
 }
 
+html,
+body {
+  height: 100%;
+}
+
 img {
   max-width: 100%;
 }
@@ -38,7 +43,14 @@ a {
 }
 
 .site-container {
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
+  min-height: 100%;
+}
+
+.main {
+  flex: 1 1 auto;
 }
 
 .is-hidden {

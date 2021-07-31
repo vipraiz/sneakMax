@@ -15,6 +15,10 @@ const prodModalNote = prodModal.querySelector(".modal-note");
 const prodModalVideo = prodModal.querySelector(".prod-modal__video");
 const prodModalBtn = prodModal.querySelector(".modal-info__order");
 
+const fullPrice = document.querySelector(".mini-cart__summ");
+
+let modal = null;
+
 const resetModal = () => {
   prodModalSlider.innerHTML = "";
   prodModalInfo.innerHTML = "";
@@ -23,6 +27,7 @@ const resetModal = () => {
   prodModalPreview.innerHTML = "";
   prodModalNote.innerHTML = "";
   prodModalVideo.innerHTML = "";
+  prodModalBtn.disabled = "true";
 };
 
 if (catalogList) {
@@ -56,7 +61,7 @@ if (catalogList) {
                   <img src="${item.mainImage}" alt="${item.title}" />
                   <div class="product__btns">
                     <button
-                      class="btn-reset product__btn"
+                      class="btn-reset product__btn product__btn_info"
                       aria-label="Показать информацию о товаре"
                       data-graph-path="prod-modal"
                       data-id="${item.id}"
@@ -66,8 +71,9 @@ if (catalogList) {
                       </svg>
                     </button>
                     <button
-                      class="btn-reset product__btn"
+                      class="btn-reset product__btn product__btn_cart"
                       aria-label="Добавить товар в корзину"
+                      data-id="${item.id}"
                     >
                       <svg>
                         <use xlink:href="img/sprite.svg#cart"></use>
@@ -75,9 +81,11 @@ if (catalogList) {
                     </button>
                   </div>
                 </div>
-                <a href="#" class="product__title">
+                <button href="#" class="product__title btn-reset"
+                  data-graph-path="prod-modal"
+                  data-id="${item.id}">
                   ${item.title}
-                </a>
+                </button>
                 <span class="product__price">${item.price.toLocaleString()} р</span>
               </article>
             </li>
@@ -86,13 +94,14 @@ if (catalogList) {
         }
       })
       .then(() => {
-        const modal = new GraphModal({
+        cartLogic();
+
+        modal = new GraphModal({
           isOpen: (modal) => {
-            const openBtnId = modal.previousActiveElement.dataset.id;
-
-            loadModalData(openBtnId);
-
-            prodSlider.update();
+            if (modal.modalContainer.classList.contains("prod-modal")) {
+              const openBtnId = modal.previousActiveElement.dataset.id;
+              loadModalData(openBtnId);
+            }
           },
         });
       });
@@ -197,7 +206,7 @@ if (catalogList) {
             if (areAvailable) {
               prodModalBtn.removeAttribute("disabled");
             } else {
-              prodModalBtn.disabled = "true";
+              prodModalBtn.setAttribute("disabled", "disabled");
             }
 
             prodModalNote.innerHTML = `${note ? note.join("") : ""}`;
@@ -214,13 +223,14 @@ if (catalogList) {
               prodModalVideo.style.display = "block";
               prodModalVideo.innerHTML = `
               <iframe
-              src="https://www.youtube.com/embed/mOhNu01i0OM"
+              src="${dataItem.video}"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen></iframe>
             `;
             } else {
               prodModalVideo.style.display = "none";
             }
+            break;
           }
         }
       })
@@ -243,7 +253,6 @@ if (catalogList) {
             .querySelector(`.modal-preview__item[data-index="${idx}"]`)
             .classList.add("modal-preview__item_active");
         });
-        prodSlider.update();
 
         prodModal.querySelectorAll(".modal-preview__item").forEach((el) => {
           el.addEventListener("click", (e) => {
@@ -258,6 +267,8 @@ if (catalogList) {
             prodSlider.slideTo(idx);
           });
         });
+
+        prodSlider.update();
       });
   };
 
@@ -274,3 +285,188 @@ if (catalogList) {
     loadProducts(prodQuantity);
   });
 }
+
+let totalPrice = 0;
+
+const plusTotalPrice = (price) => {
+  totalPrice += price;
+};
+
+const minusTotalPrice = (price) => {
+  totalPrice -= price;
+};
+
+const printTotalPrice = () => {
+  fullPrice.textContent = `${totalPrice.toLocaleString()} р`;
+};
+
+const printQuantity = (quantity) => {
+  if (quantity > 0) {
+    cartCount.classList.add("cart__count_visible");
+  } else {
+    cartCount.classList.remove("cart__count_visible");
+    cartCount.textContent = "";
+    return;
+  }
+
+  cartCount.textContent = quantity;
+};
+
+const cartCount = document.querySelector(".cart__count");
+
+const cartLogic = () => {
+  const productBtn = document.querySelectorAll(".product__btn_cart");
+  const miniCart = document.querySelector(".mini-cart");
+  const miniCartList = document.querySelector(".mini-cart__list");
+
+  const loadCartData = (id = 1) => {
+    fetch("../data/data.json")
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        for (let dataItem of data) {
+          if (dataItem.id == id) {
+            miniCartList.insertAdjacentHTML(
+              "afterbegin",
+              `
+              <li class="mini-cart__item" data-id="${dataItem.id}">
+                <article class="mini-cart__product mini-product">
+                  <div class="mini-product__image">
+                    <img src="${dataItem.mainImage}" alt="${dataItem.title}">
+                  </div>
+                  <div class="mini-product__content">
+                    <div class="mini-product__text">
+                      <button class="mini-product__title btn-reset">${
+                        dataItem.title
+                      }</button>
+                      <span class="mini-product__price">${dataItem.price.toLocaleString()} р</span>
+                    </div>
+                    <button class="mini-product__delete btn-reset" aria-label="Удалить товар">Удалить
+                      <svg>
+                        <use xlink:href="img/sprite.svg#trash"></use>
+                      </svg>
+                    </button>
+                  </div>
+                </article>
+              </li>
+            `
+            );
+            return dataItem.price;
+          }
+        }
+      })
+      .then((price) => {
+        plusTotalPrice(price);
+        printTotalPrice();
+        changeStateCartBtn();
+        printQuantity(
+          miniCartList.querySelectorAll(".mini-cart__list .mini-cart__item")
+            .length
+        );
+      });
+  };
+
+  productBtn.forEach((el) => {
+    el.addEventListener("click", (e) => {
+      const id = e.currentTarget.dataset.id;
+      loadCartData(id);
+      e.currentTarget.setAttribute("disabled", "disabled");
+    });
+  });
+
+  miniCartList.addEventListener("click", (e) => {
+    if (e.target.classList.contains("mini-product__delete")) {
+      const self = e.target;
+      const parentProduct = self.closest(".mini-cart__item");
+      const price = parseInt(
+        parentProduct
+          .querySelector(".mini-product__price")
+          .textContent.replace(/\s/g, "")
+      );
+      const id = parentProduct.dataset.id;
+
+      catalogList
+        .querySelector(`.product__btn_cart[data-id="${id}"]`)
+        .removeAttribute("disabled");
+
+      minusTotalPrice(price);
+      printTotalPrice();
+      parentProduct.remove();
+
+      const quantity = miniCartList.querySelectorAll(
+        ".mini-cart__list .mini-cart__item"
+      ).length;
+      changeStateCartBtn();
+      printQuantity(quantity);
+      if (quantity <= 0) {
+        miniCart.classList.remove("mini-cart_visible");
+      }
+    }
+  });
+};
+
+const openModalOrder = miniCart.querySelector(".mini-cart__btn");
+const cartOrder = document.querySelector(".cart-order");
+const cartOrderList = cartOrder.querySelector(".cart-order__list");
+const cartOrderShow = cartOrder.querySelector(".cart-order__show");
+
+openModalOrder.addEventListener("click", () => {
+  const productHtml = miniCartList.innerHTML;
+  const orderQuantity = cartOrder.querySelector(".cart-order__quantity span");
+  const orderSumm = cartOrder.querySelector(".cart-order__summ span");
+
+  cartOrderList.innerHTML = productHtml;
+  orderQuantity.textContent = `${
+    miniCartList.querySelectorAll(".mini-cart__list .mini-cart__item").length
+  } шт`;
+  orderSumm.textContent = fullPrice.textContent;
+});
+
+cartOrderShow.addEventListener("click", () => {
+  cartOrderList.classList.toggle("cart-order__list_visible");
+  cartOrderShow.classList.toggle("cart-order__show_active");
+});
+
+cartOrderList.addEventListener("click", (e) => {
+  if (e.target.classList.contains("mini-product__delete")) {
+    console.log("labanav");
+    const self = e.target;
+    const parentProduct = self.closest(".mini-cart__item");
+    const price = parseInt(
+      parentProduct
+        .querySelector(".mini-product__price")
+        .textContent.replace(/\s/g, "")
+    );
+    const id = parentProduct.dataset.id;
+
+    catalogList
+      .querySelector(`.product__btn_cart[data-id="${id}"]`)
+      .removeAttribute("disabled");
+
+    minusTotalPrice(price);
+    printTotalPrice();
+    cartOrder.querySelector(".cart-order__summ span").textContent =
+      fullPrice.textContent;
+
+    parentProduct.remove();
+    miniCartList
+      .querySelector(`.mini-cart__item[data-id="${parentProduct.dataset.id}"]`)
+      .remove();
+
+    const quantity = miniCartList.querySelectorAll(
+      ".mini-cart__list .mini-cart__item"
+    ).length;
+    changeStateCartBtn();
+    printQuantity(quantity);
+    cartOrder.querySelector(
+      ".cart-order__quantity span"
+    ).textContent = `${cartCount.textContent} шт`;
+
+    if (quantity <= 0) {
+      miniCart.classList.remove("mini-cart_visible");
+
+      modal.close();
+    }
+  }
+});
