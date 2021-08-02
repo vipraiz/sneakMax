@@ -50,6 +50,25 @@
     font: $font-middle-book;
     color: $color-jumbo;
   }
+
+  &__label {
+    // display: inline-block;
+  }
+
+  &__message {
+    border: none;
+    border-radius: 4px;
+    padding: $second-offset;
+    width: 465px;
+    height: 246px;
+    color: $color-text;
+    background-color: $color-white;
+    resize: none;
+
+    &::placeholder {
+      color: $color-cameo;
+    }
+  }
 }
 
 .quiz-bottom {
@@ -60,8 +79,58 @@
   padding-top: $second-offset;
 }
 
-.asd {
+.last-question {
   display: none;
+  padding: $second-offset 0;
+
+  &__form {
+    position: relative;
+    border-radius: 4px;
+    padding: $main-offset;
+    max-width: 655px;
+    background: $color-cameo;
+  }
+
+  &__title {
+    margin: 0;
+    margin-bottom: $small-offset;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 140%;
+    color: $color-white;
+  }
+
+  &__descr {
+    margin: 0;
+    margin-bottom: $second-offset;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 140%;
+    color: $color-white;
+  }
+
+  &__input {
+    max-width: 500px;
+
+    &:not(:last-of-type) {
+      margin-bottom: $small-offset;
+    }
+
+    &:last-of-type {
+      margin-bottom: $second-offset;
+    }
+  }
+
+  &__btn {
+    padding: 19px 73px;
+  }
+
+  &__decorate {
+    position: absolute;
+    right: 24px;
+    top: -7px;
+    transform: translateX(100%);
+  }
 }
 
 .custom-checkbox.quiz-question__label {

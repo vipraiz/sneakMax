@@ -29,12 +29,10 @@
 
   &__icon {
     display: inline-block;
+    margin-right: 5px;
     width: 25px;
     height: 25px;
-    background-image: url("../img/cross.svg");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+    fill: currentColor;
     transition: transform 0.3s ease-in-out;
   }
 

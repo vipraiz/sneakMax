@@ -10,17 +10,24 @@
   &__link {
     display: block;
     width: 44px;
-    height: 44px;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+    height: 45px;
+    // background-position: center;
+    // background-size: cover;
+    // background-repeat: no-repeat;
 
-    &_vk {
-      background-image: url("../img/vk.svg");
-    }
+    // &_vk {
+    //   // background-image: url("../img/vk.svg");
+    // }
 
-    &_instagram {
-      background-image: url("../img/instagram.svg");
+    // &_instagram {
+    //   // background-image: url("../img/instagram.svg");
+    // }
+
+    svg {
+      width: 100%;
+      height: 100%;
+      fill: #0e5a4c;
+      object-fit: cover;
     }
   }
 }

@@ -2,13 +2,15 @@
   position: relative;
   padding: $big-offset 0;
   color: $color-white;
+  background-position: top right;
+  background-repeat: no-repeat;
   background-color: $color-main;
 
-  &__figure {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
+  // &__figure {
+  //   position: absolute;
+  //   right: 0;
+  //   top: 0;
+  // }
 
   &__list {
     row-gap: $main-offset;

@@ -59,7 +59,7 @@ const quizData = [
   },
   {
     number: 3,
-    title: "Уточните какие-либо моменты",
+    title: "Уточните какие-либо моменты (необязательно)",
     answer_alias: "message",
     answers: [
       {
@@ -112,15 +112,13 @@ const quizTemplate = (data = [], dataLength = 0, options) => {
   });
 
   return `
-    <div class="quiz-questions">
-      <h3 class="quiz-question__title">${title}</h3>
-      <ul class="quiz-question__answers list-reset">
-        ${answers.join("")}
-      </ul>
-      <div class="quiz-bottom">
-        <div class="quiz-question__count">${number} из ${dataLength}</div>
-        <button type="button" class="btn btn-reset btn_thirdly quiz-question__btn" data-next-btn>${nextBtnText}</button>
-      </div>
+    <h3 class="quiz-question__title">${title}</h3>
+    <ul class="quiz-question__answers list-reset">
+      ${answers.join("")}
+    </ul>
+    <div class="quiz-bottom">
+      <div class="quiz-question__count">${number} из ${dataLength}</div>
+      <button type="button" class="btn btn-reset btn_thirdly quiz-question__btn" data-next-btn>${nextBtnText}</button>
     </div>
 	`;
 };
@@ -157,17 +155,17 @@ class Quiz {
         );
 
         if (this.counter + 1 == this.dataLength) {
-          // this.$el
-          //   .querySelector(".quiz-bottom")
-          //   .insertAdjacentHTML(
-          //     "beforeend",
-          //     `<button type="button" data-send>${this.options.sendBtnText}</button>`
-          //   );
-          // this.$el.querySelector("[data-next-btn]").remove();
+          document.querySelector(".quiz-question__answers").style.display =
+            "block";
         }
       } else {
         document.querySelector(".quiz-questions").style.display = "none";
-        document.querySelector(".asd").style.display = "block";
+        document.querySelector(".last-question").style.display = "block";
+
+        document.querySelector(".quiz__title").textContent =
+          "Ваша подборка готова!";
+        document.querySelector(".quiz__descr").textContent =
+          "Оставьте свои контактные данные, чтобы бы мы могли отправить  подготовленный для вас каталог";
       }
     }
   }
@@ -199,16 +197,11 @@ class Quiz {
   }
 
   valid() {
-    let isValid = false;
-
     let textarea = this.$el.querySelector("textarea");
-
     if (textarea) {
-      if (textarea.value.length > 0) {
-        isValid = true;
-        return isValid;
-      }
+      return true;
     }
+    let isValid = false;
 
     let elements = this.$el.querySelectorAll("input");
     elements.forEach((el) => {
@@ -216,6 +209,7 @@ class Quiz {
         case "INPUT":
           switch (el.type) {
             case "text":
+              isValid = true;
               if (el.value) {
                 isValid = true;
               } else {

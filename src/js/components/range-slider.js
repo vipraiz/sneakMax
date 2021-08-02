@@ -5,7 +5,7 @@ if (rangeSlider) {
     maxPrice = 1;
 
   const setRange = () => {
-    fetch("../data/data.json")
+    fetch("../data/data-prods.json")
       .then((response) => {
         return response.json();
       })
@@ -30,6 +30,8 @@ if (rangeSlider) {
         });
 
         rangeSlider.noUiSlider.set([minPrice, maxPrice]);
+
+        reloadProducts();
       });
   };
 

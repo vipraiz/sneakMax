@@ -1,11 +1,11 @@
-<section class="about">
+<section class="about" style="background-image: url(img/about-figure.svg)">
   <div class="container about__container">
-    <img
+    <!-- <img
       src="img/about-figure.svg"
       alt=""
       class="about__figure"
       aria-hidden="true"
-    />
+    /> -->
     <div class="about__left">
       <h2 class="title about__title">Пара слов о нас</h2>
       <div class="about__text">
@@ -20,8 +20,13 @@
         </p>
       </div>
     </div>
-    <div class="about__image">
-      <img src="img/about.jpg" alt="" aria-hidden="true" />
+    <div class="about__image lazyload-bg">
+      <img
+        data-src="img/about.jpg"
+        src="img/1x1.png"
+        alt=""
+        aria-hidden="true"
+      />
     </div>
   </div>
 </section>

@@ -90,7 +90,19 @@
   }
 
   &__rating {
+    display: flex;
+    align-items: center;
     margin-bottom: $second-offset;
+    fill: #f14f4f;
+
+    svg {
+      width: 16px;
+      height: 15px;
+
+      &:not(:last-child) {
+        margin-right: 8px;
+      }
+    }
   }
 
   &__subtitle {
@@ -127,17 +139,27 @@
 
 .modal-note {
   &__item {
+    position: relative;
     padding-left: 25px;
     font: $font-book;
     color: $color-gray;
-    background-image: url("../img/check-list.svg");
-    background-position: left top 25%;
-    background-size: 15px 12px;
-    background-repeat: no-repeat;
+    // background-image: url("../img/check-list.svg");
+    // background-position: left top 25%;
+    // background-size: 15px 12px;
+    // background-repeat: no-repeat;
 
     &:not(:last-child) {
       margin-bottom: $small-offset;
     }
+  }
+
+  &__check {
+    position: absolute;
+    left: 0;
+    top: 15%;
+    width: 15px;
+    height: 12px;
+    fill: currentColor;
   }
 }
 

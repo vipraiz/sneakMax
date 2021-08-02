@@ -65,9 +65,9 @@ a {
   }
 }
 
-.error {
-  border: 2px #ff4019 solid !important; // stylelint-disable-line declaration-no-important
-}
+// .error {
+//   border: 2px #ff4019 solid !important; // stylelint-disable-line declaration-no-important
+// }
 
 .btn-reset {
   border: none;
@@ -171,6 +171,10 @@ a {
   outline-color: initial;
 }
 
+.quiz-question__answer.error + .custom-checkbox__content::before {
+  border: 2px #ff4019 solid;
+}
+
 .visually-hidden {
   position: absolute;
   overflow: hidden;
@@ -263,4 +267,8 @@ a {
   &::placeholder {
     color: $color-gray;
   }
+}
+
+.lazyload-bg {
+  background: url("../img/lazyload.gif") center / 50px no-repeat;
 }
