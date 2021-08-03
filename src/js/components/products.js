@@ -114,8 +114,10 @@ if (catalogList) {
             catalogList.innerHTML += `
               <li class="catalog-list__item">
               <article class="product">
-                <div class="product__image">
-                  <img src="${item.mainImage}" alt="${item.title}" />
+                <div class="product__image lazyload-bg">
+                  <img data-src="${item.mainImage}" src="img/1x1.png" alt="${
+              item.title
+            }" />
                   <div class="product__btns">
                     <button
                       class="btn-reset product__btn product__btn_info"
@@ -148,6 +150,7 @@ if (catalogList) {
               </article>
             </li>
             `;
+            addLazyImages();
           }
         }
       })

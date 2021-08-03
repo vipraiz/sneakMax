@@ -78,7 +78,9 @@ const quizTemplate = (data = [], dataLength = 0, options) => {
       return `
       <li class="quiz-question__item">
         <label class="custom-checkbox quiz-question__label">
-          <img src="img/sneaker.jpg" alt="">
+          <div class="quiz-question__image lazyload-bg">
+            <img data-src="img/sneaker.jpg" src="img/1x1.png" alt="" />
+          </div>
           <input type="${item.type}"
             class="custom-checkbox__field quiz-question__answer"
             data-valid="false"
@@ -142,6 +144,7 @@ class Quiz {
       this.dataLength,
       this.options
     );
+    addLazyImages();
   }
 
   nextQuestion() {
@@ -153,6 +156,7 @@ class Quiz {
           this.dataLength,
           this.options
         );
+        addLazyImages();
 
         if (this.counter + 1 == this.dataLength) {
           document.querySelector(".quiz-question__answers").style.display =
@@ -160,7 +164,36 @@ class Quiz {
         }
       } else {
         document.querySelector(".quiz-questions").style.display = "none";
-        document.querySelector(".last-question").style.display = "block";
+        document.querySelector(".last-question").innerHTML = `
+          <div class="last-question__form">
+            <h3 class="last-question__title">Получить предложение</h3>
+            <p class="last-question__descr">
+              Получите подборку подходящих для вас моделей на почту
+            </p>
+            <input
+              type="text"
+              class="input last-question__input"
+              placeholder="Ваше имя"
+            />
+            <input
+              type="email"
+              class="input last-question__input"
+              placeholder="E-mail"
+            />
+            <button class="btn btn_primary btn-reset last-question__btn">
+              Получить
+            </button>
+            <div class="last-question__decorate lazyload-bg">
+              <img
+                data-src="img/iphone.png"
+                src="img/1x1.png"
+                alt=""
+                aria-hidden="true"
+              />
+            </div>
+          </div>
+        `;
+        addLazyImages();
 
         document.querySelector(".quiz__title").textContent =
           "Ваша подборка готова!";

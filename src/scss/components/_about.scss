@@ -55,9 +55,9 @@
   }
 
   &__image {
-    // max-width: 57.63%;
     clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
-    min-height: 580px;
+    width: 57.63%;
+    height: 580px;
 
     img {
       display: block;

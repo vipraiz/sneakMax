@@ -1,4 +1,4 @@
-ymaps.ready(init);
+// ymaps.ready(init);
 
 function init() {
   fetch("data/data-map-settings.json")
@@ -6,16 +6,27 @@ function init() {
       return response.json();
     })
     .then((data) => {
-      const map = new ymaps.Map("map", {
-        center: data[0].coords,
-        zoom: data[0].zoom,
-        controls: ["zoomControl"],
-        behaviors: ["drag", "dblClickZoom", "multiTouch"],
-      });
+      const map = new ymaps.Map(
+        "map",
+        {
+          center: data[0].coords,
+          zoom: data[0].zoom,
+          controls: ["zoomControl"],
+          behaviors: ["drag", "dblClickZoom", "multiTouch"],
+        },
+        {
+          restrictMapArea: [
+            [59.738, 29.611],
+            [60.056, 30.829],
+          ],
+        }
+      );
+
+      const placeMarks = new Array(data.length - 1);
 
       for (let i = 1; i < data.length; i++) {
         const dataItem = data[i];
-        const placeMark = new ymaps.Placemark(
+        placeMarks[i - 1] = new ymaps.Placemark(
           dataItem.coords,
           {
             iconCaption: dataItem.iconCaption,
@@ -23,7 +34,14 @@ function init() {
           },
           dataItem.type == "main" ? { preset: "islands#redIcon" } : {}
         );
-        map.geoObjects.add(placeMark);
+        placeMarks[i - 1].events.add("click", () => {
+          if (map.getZoom() < 16) {
+            map.setZoom(16);
+          }
+          map.setCenter(dataItem.coords);
+        });
       }
+
+      map.geoObjects.add(new ymaps.Clusterer({}).add(placeMarks));
     });
 }

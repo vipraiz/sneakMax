@@ -64,16 +64,21 @@
     width: 100%;
     height: 100%;
 
+    &_big {
+      grid-column: 2 span;
+      grid-row: 2 span;
+    }
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+
     img {
       display: block;
       width: 100%;
       height: 100%;
       object-fit: cover;
-    }
-
-    &_big {
-      grid-column: 2 span;
-      grid-row: 2 span;
     }
   }
 }
