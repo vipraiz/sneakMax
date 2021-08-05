@@ -50,7 +50,12 @@
   }
 
   &__map {
+    overflow: hidden;
+    border-radius: 4px;
     width: 680px;
     height: 500px;
+    background-position: center;
+    background-size: 25%;
+    background-repeat: no-repeat;
   }
 }

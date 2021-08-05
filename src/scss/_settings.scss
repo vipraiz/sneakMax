@@ -109,6 +109,7 @@ a {
     &:disabled {
       background-color: $color-accent-disabled;
       opacity: 0.7;
+      pointer-events: none;
     }
   }
 
@@ -267,8 +268,4 @@ a {
   &::placeholder {
     color: $color-gray;
   }
-}
-
-.lazyload-bg {
-  background: url("../img/lazyload.gif") center / 50px no-repeat;
 }

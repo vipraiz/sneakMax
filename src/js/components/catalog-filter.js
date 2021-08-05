@@ -5,7 +5,7 @@ let prices = [1, 999999];
 let male = false;
 let female = false;
 let sizes = [];
-let sizesMaxCount = 0;
+let sizesMaxCount = catalogFilters.querySelectorAll(".sizes-table__btn").length;
 
 const getFilters = () => {
   prices = Array.from(
@@ -21,7 +21,23 @@ const getFilters = () => {
   ).map((el) => {
     return parseInt(el.textContent);
   });
-  sizesMaxCount = catalogFilters.querySelectorAll(".sizes-table__btn").length;
+};
+
+const resetFilters = () => {
+  setRangeSlider(0, minPrice);
+  setRangeSlider(1, maxPrice);
+
+  catalogFilters.querySelector(".catalog-filters__male").checked = false;
+  catalogFilters.querySelector(".catalog-filters__female").checked = false;
+
+  catalogFilters.querySelectorAll(".sizes-table__btn_active").forEach((el) => {
+    el.classList.remove("sizes-table__btn_active");
+  });
+
+  prices = [1, 999999];
+  male = false;
+  female = false;
+  sizes = [];
 };
 
 const filterProduct = (item) => {
@@ -66,8 +82,18 @@ const filterProduct = (item) => {
   return false;
 };
 
-const applyBtn = catalogFilters.querySelector(".catalog__apply");
-applyBtn.addEventListener("click", () => {
-  getFilters();
-  reloadProducts();
-});
+catalogFilters
+  .querySelector(".catalog__apply")
+  .addEventListener("click", () => {
+    lazyProds = false;
+    getFilters();
+    reloadProducts();
+  });
+
+catalogFilters
+  .querySelector(".catalog__reset")
+  .addEventListener("click", () => {
+    lazyProds = false;
+    resetFilters();
+    reloadProducts();
+  });

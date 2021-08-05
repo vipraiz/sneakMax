@@ -21,7 +21,7 @@
 }
 
 .quiz-questions {
-  padding: $second-offset 0;
+  padding-top: $second-offset;
 }
 
 .quiz-question {
@@ -37,6 +37,7 @@
     grid-auto-rows: 155px;
     grid-template-columns: repeat(3, 1fr);
     padding-bottom: $main-offset;
+    min-height: 368px;
     gap: $grid-gap 70px;
   }
 
@@ -85,6 +86,7 @@
 }
 
 .last-question {
+  display: none;
   padding: $second-offset 0;
 
   &__form {
@@ -135,14 +137,10 @@
     top: -7px;
     width: 205px;
     height: 411px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     transform: translateX(100%);
-
-    img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
   }
 }
 

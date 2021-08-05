@@ -43,5 +43,8 @@ function init() {
       }
 
       map.geoObjects.add(new ymaps.Clusterer({}).add(placeMarks));
+    })
+    .then(() => {
+      map.style.backgroundImage = "none";
     });
 }

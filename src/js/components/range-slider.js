@@ -1,11 +1,10 @@
 const rangeSlider = document.getElementById("range-slider");
+let minPrice = 99999,
+  maxPrice = 1;
 
 if (rangeSlider) {
-  let minPrice = 99999,
-    maxPrice = 1;
-
   const setRange = () => {
-    fetch("../data/data-prods.json")
+    fetch("data/data-prods.json")
       .then((response) => {
         return response.json();
       })
@@ -31,6 +30,7 @@ if (rangeSlider) {
 
         rangeSlider.noUiSlider.set([minPrice, maxPrice]);
 
+        getFilters();
         reloadProducts();
       });
   };

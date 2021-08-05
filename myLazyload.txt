@@ -8,7 +8,7 @@ let lazyImagesPositions = [];
 
 if (lazyImages.length > 0) {
   lazyImages.forEach((img) => {
-    lazyImagesPositions.push(img.getBoundingClientRect().top + pageYOffset);
+    lazyImagesPositions.push(img.getBoundingClientRect().top);
     lazyScrollCheck();
   });
 }
@@ -19,7 +19,7 @@ window.addEventListener("scroll", () => {
   ) {
     lazyScrollCheck();
   }
-  if (!map.classList.contains("map_loaded")) {
+  if (!map.classList.contains("map-loaded")) {
     getMap();
   }
 });
@@ -37,7 +37,7 @@ function lazyScrollCheck() {
       lazyImages[index].srcset = lazyImages[index].dataset.srcset;
       lazyImages[index].removeAttribute("data-srcset");
     }
-    lazyImages[index].parentNode.classList.remove("lazyload-bg");
+    lazyImages[index].classList.remove("lazyload-bg");
     delete lazyImagesPositions[index];
     // lazyImagesPositions.splice(index, 1);
   }
@@ -47,7 +47,7 @@ function getMap() {
   const mapPos = map.getBoundingClientRect().top + pageYOffset;
   if (pageYOffset > mapPos - windownHeigth) {
     ymaps.ready(init);
-    map.classList.add("map_loaded");
+    map.classList.add("map-loaded");
   }
 }
 

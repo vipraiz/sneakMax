@@ -110,15 +110,23 @@ const images = () => {
     "./src/img/**.jpg",
     "./src/img/**.png",
     "./src/img/**.jpeg",
-    "./src/img/**.gif",
+    "./src/img/**.ico",
     "./src/img/*.svg",
     "./src/img/**/*.jpg",
-    "./src/img/**/*.gif",
     "./src/img/**/*.png",
     "./src/img/**/*.jpeg",
   ])
     .pipe(gulpif(isProd, image()))
     .pipe(dest("./app/img"));
+};
+
+const imagesGI = () => {
+  return src([
+    "./src/img/**.gif",
+    "./src/img/**.ico",
+    "./src/img/**/*.gif",
+    "./src/img/**/*.ico",
+  ]).pipe(dest("./app/img"));
 };
 
 const htmlInclude = () => {
@@ -145,8 +153,10 @@ const watchFiles = () => {
   watch("./src/partials/*.html", htmlInclude);
   watch("./src/*.html", htmlInclude);
   watch("./src/resources/**", resources);
-  watch("./src/img/*.{jpg,jpeg,png,svg,gif}", images);
+  watch("./src/img/*.{jpg,jpeg,png,svg}", images);
+  watch("./src/img/*.{gif,ico}", imagesGI);
   watch("./src/img/**/*.{jpg,jpeg,png}", images);
+  watch("./src/img/**/*.{gif,ico}", imagesGI);
   watch("./src/img/svg/**.svg", svgSprites);
 };
 
@@ -201,6 +211,7 @@ exports.default = series(
   styles,
   resources,
   images,
+  imagesGI,
   svgSprites,
   watchFiles
 );
@@ -213,6 +224,7 @@ exports.build = series(
   styles,
   resources,
   images,
+  imagesGI,
   svgSprites,
   htmlMinify
 );
@@ -227,5 +239,6 @@ exports.backend = series(
   stylesBackend,
   resources,
   images,
+  imagesGI,
   svgSprites
 );

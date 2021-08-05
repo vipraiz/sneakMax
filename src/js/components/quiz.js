@@ -1,3 +1,5 @@
+let lazyQuiz = true;
+
 const quizData = [
   {
     number: 1,
@@ -78,8 +80,26 @@ const quizTemplate = (data = [], dataLength = 0, options) => {
       return `
       <li class="quiz-question__item">
         <label class="custom-checkbox quiz-question__label">
-          <div class="quiz-question__image lazyload-bg">
-            <img data-src="img/sneaker.jpg" src="img/1x1.png" alt="" />
+          <div class="quiz-question__image">
+          ${
+            lazyQuiz
+              ? `
+            <img
+              src="img/sneaker.jpg"
+              class="lozad"
+              data-srcset="img/sneaker.jpg 100w"
+              srcset="img/placeholder.svg 100w"
+              sizes="100vw"
+              alt="${item.title}"
+            />
+          `
+              : `
+            <img
+              src="img/sneaker.jpg"
+              alt="${item.title}"
+            />
+          `
+          }
           </div>
           <input type="${item.type}"
             class="custom-checkbox__field quiz-question__answer"
@@ -144,7 +164,9 @@ class Quiz {
       this.dataLength,
       this.options
     );
-    addLazyImages();
+    if (lazyQuiz) {
+      observer.observe();
+    }
   }
 
   nextQuestion() {
@@ -156,7 +178,9 @@ class Quiz {
           this.dataLength,
           this.options
         );
-        addLazyImages();
+        if (lazyQuiz) {
+          observer.observe();
+        }
 
         if (this.counter + 1 == this.dataLength) {
           document.querySelector(".quiz-question__answers").style.display =
@@ -164,7 +188,8 @@ class Quiz {
         }
       } else {
         document.querySelector(".quiz-questions").style.display = "none";
-        document.querySelector(".last-question").innerHTML = `
+        const lastQuestion = document.querySelector(".last-question");
+        lastQuestion.innerHTML = `
           <div class="last-question__form">
             <h3 class="last-question__title">Получить предложение</h3>
             <p class="last-question__descr">
@@ -183,17 +208,18 @@ class Quiz {
             <button class="btn btn_primary btn-reset last-question__btn">
               Получить
             </button>
-            <div class="last-question__decorate lazyload-bg">
-              <img
-                data-src="img/iphone.png"
-                src="img/1x1.png"
-                alt=""
-                aria-hidden="true"
-              />
-            </div>
+            ${
+              lazyQuiz
+                ? `
+              <div class="last-question__decorate lozad" data-background-image="img/iphone.png" style="background-image: url('img/placeholder.svg')"></div>
+            `
+                : `
+              <div class="last-question__decorate" style="background-image: url(../img/iphone.png)"></div>
+            `
+            }
           </div>
         `;
-        addLazyImages();
+        lastQuestion.style.display = "block";
 
         document.querySelector(".quiz__title").textContent =
           "Ваша подборка готова!";
@@ -206,6 +232,7 @@ class Quiz {
   events() {
     this.$el.addEventListener("click", (e) => {
       if (e.target == document.querySelector("[data-next-btn]")) {
+        lazyQuiz = false;
         this.addToSend();
         this.nextQuestion();
       }
