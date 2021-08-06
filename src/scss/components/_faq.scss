@@ -25,6 +25,10 @@
     font: $font-prehigh-regular;
     text-align: left;
     color: $color-text;
+
+    &.focus-visible {
+      outline: 2px solid $color-text;
+    }
   }
 
   &__icon {

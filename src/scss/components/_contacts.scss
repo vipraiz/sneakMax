@@ -45,8 +45,22 @@
   &__phone {
     display: inline-block;
     margin-bottom: $small-offset;
+    outline: none;
     font: $font-middle-bold;
     color: $color-text;
+    transition: color 0.3s ease-in-out;
+
+    &:focus {
+      color: $color-accent-hover;
+    }
+
+    &:hover {
+      color: $color-accent-hover;
+    }
+
+    &:active {
+      color: $color-accent-active;
+    }
   }
 
   &__map {

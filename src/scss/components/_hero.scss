@@ -40,4 +40,10 @@
     font: $font-middle-book;
     color: $color-white;
   }
+
+  &__btn {
+    &.focus-visible {
+      outline: 2px solid $color-white;
+    }
+  }
 }

@@ -35,6 +35,10 @@
 
   &__btn {
     width: 100%;
+
+    &.focus-visible {
+      outline: 2px solid $color-white;
+    }
   }
 
   &__right {
@@ -53,11 +57,19 @@
   }
 
   &__link {
+    outline: none;
+
     img {
       display: block;
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+
+    &.focus-visible {
+      img {
+        outline: 2px solid $color-accent;
+      }
     }
   }
 

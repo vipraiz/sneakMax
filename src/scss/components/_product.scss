@@ -31,6 +31,40 @@
       width: 28px;
       height: 28px;
       object-fit: cover;
+      transition: fill 0.3s ease-in-out, stroke 0.3s ease-in-out,
+        transform 0.3s ease-in-out;
+    }
+
+    &_info {
+      svg {
+        stroke: $color-white;
+
+        &:active {
+          stroke: $color-accent;
+        }
+      }
+    }
+
+    &_cart {
+      svg {
+        fill: $color-white;
+
+        &:active {
+          fill: $color-accent;
+        }
+      }
+    }
+
+    &:hover {
+      background-color: $color-text-hover;
+
+      svg {
+        transform: scale(1.1);
+      }
+    }
+
+    &:active {
+      background-color: $color-text-active;
     }
 
     &:disabled {
@@ -38,12 +72,16 @@
       pointer-events: none;
     }
 
-    &:hover {
-      background-color: $color-text-hover;
-    }
-
     &:first-child {
       margin-right: $main-offset;
+    }
+
+    &.focus-visible {
+      background-color: $color-text-hover;
+
+      svg {
+        transform: scale(1.1);
+      }
     }
   }
 
@@ -71,6 +109,15 @@
     line-height: 1;
     text-align: left;
     color: $color-text;
+    transition: color 0.3s ease-in-out;
+
+    &:hover {
+      color: $color-accent-hover;
+    }
+
+    &:active {
+      color: $color-accent-active;
+    }
   }
 
   &__price {
@@ -85,6 +132,12 @@
       visibility: visible;
     }
   }
+}
+
+.product__title.focus-visible {
+  outline: 1px solid $color-accent;
+  outline-offset: 2px;
+  color: $color-accent-hover;
 }
 
 .mini-product {
@@ -130,6 +183,15 @@
     line-height: 20px;
     text-align: left;
     color: #4d4d4d;
+    transition: color 0.3s ease-in-out;
+
+    &:hover {
+      color: $color-accent-hover;
+    }
+
+    &:active {
+      color: $color-accent-active;
+    }
   }
 
   &__price {
@@ -146,8 +208,30 @@
       display: block;
       width: 100%;
       height: 100%;
+      fill: #4d4d4d;
       object-fit: cover;
+      transition: fill 0.3s ease-in-out, transform 0.3s ease-in-out;
       pointer-events: none;
+    }
+
+    &:hover {
+      svg {
+        fill: $color-accent;
+        transform: scale(1.1);
+      }
+    }
+
+    &:active {
+      svg {
+        fill: $color-accent-active;
+      }
+    }
+
+    &.focus-visible {
+      svg {
+        fill: $color-accent;
+        transform: scale(1.1);
+      }
     }
   }
 }
@@ -204,15 +288,55 @@
     }
 
     &__delete {
+      position: relative;
       width: auto;
       height: auto;
       font: $font-book;
       line-height: 1;
       color: $color-gray;
+      transition: color 0.3s ease-in-out;
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 1px;
+        background-color: currentColor;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease-in-out;
+      }
 
       svg {
         display: none;
       }
+
+      &:hover {
+        color: $color-accent;
+
+        &::before {
+          transform: scaleX(1);
+        }
+      }
+
+      &:active {
+        color: $color-accent-active;
+      }
+
+      &.focus-visible {
+        color: $color-accent;
+
+        &::before {
+          transform: scaleX(1);
+        }
+      }
     }
   }
+}
+
+.mini-product__title.focus-visible {
+  outline: 1px solid $color-accent;
+  color: $color-accent-hover;
 }

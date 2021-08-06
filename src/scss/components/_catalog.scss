@@ -10,7 +10,7 @@
   }
 
   &__grid {
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     grid-column: 9 span;
@@ -42,11 +42,67 @@
   &__apply {
     margin-bottom: $second-offset;
     width: 100%;
+
+    &.focus-visible {
+      outline: 2px solid $color-accent;
+      outline-offset: 2px;
+    }
   }
 
   &__more {
     display: none;
     margin-top: $big-offset;
+
+    &.focus-visible {
+      outline: 2px solid $color-text;
+      outline-offset: 2px;
+    }
+  }
+
+  &__not-found-message {
+    align-self: center;
+    grid-column: 9 span;
+    font: $font-prehigh-book;
+    text-align: center;
+    color: $color-text;
+  }
+
+  &__reset {
+    position: relative;
+    transition: color 0.3s ease-in-out;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 1px;
+      background-color: currentColor;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    &:hover {
+      color: $color-accent-hover;
+
+      &::before {
+        transform: scaleX(1);
+      }
+    }
+
+    &:active {
+      color: $color-accent-active;
+    }
+  }
+}
+
+.catalog__reset.focus-visible {
+  color: $color-accent-hover;
+
+  &::before {
+    transform: scaleX(1);
   }
 }
 
@@ -93,6 +149,7 @@
   }
 
   &__input {
+    outline: none;
     border: 1px solid $color-gray;
     width: 50%;
     height: 50px;
@@ -160,4 +217,8 @@
   .noUi-handle-lower {
     right: -3px;
   }
+}
+
+.catalog-price__input.focus-visible {
+  background-color: $color-bg-dark;
 }

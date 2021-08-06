@@ -39,6 +39,13 @@
       margin-bottom: 30px;
     }
   }
+
+  &__btn {
+    &.focus-visible {
+      outline: 2px solid $color-text;
+      outline-offset: 2px;
+    }
+  }
 }
 
 .cart-order {
@@ -74,11 +81,26 @@
   }
 
   &__show {
+    position: relative;
     display: inline-flex;
     align-items: center;
     font: $font-middle-book;
     line-height: 1;
     color: $color-text;
+    transition: color 0.3s ease-in-out;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 1px;
+      background-color: currentColor;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease-in-out;
+    }
 
     svg {
       margin-left: 5px;
@@ -92,6 +114,26 @@
     &_active {
       svg {
         transform: rotate(180deg);
+      }
+    }
+
+    &:hover {
+      color: $color-accent-hover;
+
+      &::before {
+        transform: scaleX(1);
+      }
+    }
+
+    &:active {
+      color: $color-accent-active;
+    }
+
+    &.focus-visible {
+      color: $color-accent-hover;
+
+      &::before {
+        transform: scaleX(1);
       }
     }
   }

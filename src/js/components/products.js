@@ -87,6 +87,17 @@ if (catalogList) {
 
         const filteredProdIds = getFirteredProdIds();
 
+        if (filteredProdIds.length > 0) {
+          document.querySelector(".catalog__not-found-message").style.display =
+            "none";
+          document.querySelector(".catalog__grid").style.display = "flex";
+        } else {
+          document.querySelector(".catalog__grid").style.display = "none";
+          document.querySelector(".catalog__not-found-message").style.display =
+            "inline";
+          return false;
+        }
+
         if (quantity >= filteredProdIds.length) {
           quantity = filteredProdIds.length;
           loadMoreBtn.style.display = "none";
@@ -171,9 +182,12 @@ if (catalogList) {
             observer.observe();
           }
         }
+        return true;
       })
-      .then(() => {
-        cartLogic();
+      .then((needCartLogic) => {
+        if (needCartLogic) {
+          cartLogic();
+        }
       });
   };
 
@@ -317,6 +331,21 @@ if (catalogList) {
         }
       })
       .then(() => {
+        prodModal.querySelectorAll(".modal-sizes__btn").forEach((el) => {
+          el.addEventListener("click", (e) => {
+            if (e.target.classList.contains("modal-sizes__btn_active")) {
+              e.target.classList.remove("modal-sizes__btn_active");
+            } else {
+              prodModal
+                .querySelectorAll(".modal-sizes__btn_active")
+                .forEach((el) => {
+                  el.classList.remove("modal-sizes__btn_active");
+                });
+              e.target.classList.add("modal-sizes__btn_active");
+            }
+          });
+        });
+
         document.querySelectorAll(".swiper-slide").forEach((el) => {
           el.addEventListener("click", function (event) {
             window.open(event.target.src);

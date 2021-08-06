@@ -2,4 +2,10 @@
   font: $font-middle-bold;
   line-height: 1;
   color: $color-white;
+  transition: opacity 0.3s ease-in-out;
+
+  &.focus-visible {
+    outline: 2px solid $color-accent;
+    outline-offset: 2px;
+  }
 }

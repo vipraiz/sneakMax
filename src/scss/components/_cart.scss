@@ -1,9 +1,13 @@
 .cart {
-  // position: relative;
-
   &__btn {
     display: flex;
     align-items: center;
+
+    &:hover {
+      .cart__btn-text::before {
+        transform: scaleX(1);
+      }
+    }
 
     &:disabled {
       opacity: 0.7;
@@ -11,21 +15,25 @@
     }
   }
 
-  // &__element {
-  //   position: absolute;
-  //   right: 0;
-  //   bottom: -100%;
-  //   width: 480px;
-  //   height: calc(69.6px - 100%);
-  //   background-color: #fff;
-  //   transform: translateX(-0%);
-  // }
-
   &__btn-text {
+    position: relative;
     margin-right: $small-offset;
     font: $font-book;
     color: $color-white;
     pointer-events: none;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 1px;
+      background-color: currentColor;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease-in-out;
+    }
   }
 
   &__img {
@@ -37,7 +45,9 @@
     svg {
       width: 100%;
       height: 100%;
+      fill: $color-white;
       object-fit: cover;
+      transition: fill 0.2s ease-in-out;
     }
   }
 
@@ -132,11 +142,29 @@
   &__btn {
     padding-top: 14px;
     padding-bottom: 14px;
+
+    &.focus-visible {
+      outline: 2px solid $color-text;
+    }
   }
 
   &_visible {
     max-height: 600px;
     opacity: 1;
     visibility: visible;
+  }
+}
+
+.cart__btn.focus-visible {
+  .cart__btn-text::before {
+    transform: scaleX(1);
+  }
+}
+
+.cart__btn_clicked {
+  .cart__img {
+    svg {
+      fill: $color-accent-hover;
+    }
   }
 }
