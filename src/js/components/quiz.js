@@ -211,10 +211,10 @@ class Quiz {
             ${
               lazyQuiz
                 ? `
-              <div class="last-question__decorate lozad" data-background-image="img/iphone.png" style="background-image: url('img/placeholder.svg')"></div>
+              <div class="last-question__decorate lozad" data-background-image="img/iphone.png" style="background-image: url(img/placeholder.svg)"></div>
             `
                 : `
-              <div class="last-question__decorate" style="background-image: url(../img/iphone.png)"></div>
+              <div class="last-question__decorate" style="background-image: url(img/iphone.png)"></div>
             `
             }
           </div>

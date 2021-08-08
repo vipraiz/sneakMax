@@ -4,6 +4,9 @@ const loadMoreBtn = document.querySelector(".catalog__more");
 const prodModal = document.querySelector(
   `[data-graph-target="prod-modal"] .modal-content`
 );
+const cartModal = document.querySelector(
+  `[data-graph-target="cart-modal"] .modal-content`
+);
 const prodModalSlider = prodModal.querySelector(
   ".modal-slider .swiper-wrapper"
 );
@@ -51,6 +54,9 @@ if (catalogList) {
 
   modal = new GraphModal({
     isOpen: (modal) => {
+      modal.modal.querySelectorAll(".modal__close").forEach((element) => {
+        element.setAttribute("disabled", "disabled");
+      });
       if (modal.modalContainer.classList.contains("prod-modal")) {
         const openBtnId = modal.previousActiveElement.dataset.id;
         if (openBtnId) {
@@ -58,6 +64,11 @@ if (catalogList) {
         } else {
           console.log(modal);
         }
+      }
+
+      if (modal.modalContainer.classList.contains("cart-modal")) {
+        modal.isOpen = true;
+        modal.focusTrap();
       }
     },
   });
@@ -331,6 +342,7 @@ if (catalogList) {
         }
       })
       .then(() => {
+        modal.focusTrap();
         prodModal.querySelectorAll(".modal-sizes__btn").forEach((el) => {
           el.addEventListener("click", (e) => {
             if (e.target.classList.contains("modal-sizes__btn_active")) {
@@ -346,7 +358,7 @@ if (catalogList) {
           });
         });
 
-        document.querySelectorAll(".swiper-slide").forEach((el) => {
+        prodModal.querySelectorAll(".swiper-slide").forEach((el) => {
           el.addEventListener("click", function (event) {
             window.open(event.target.src);
           });

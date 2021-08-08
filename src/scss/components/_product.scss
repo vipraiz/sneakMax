@@ -38,8 +38,10 @@
     &_info {
       svg {
         stroke: $color-white;
+      }
 
-        &:active {
+      &:active {
+        svg {
           stroke: $color-accent;
         }
       }
@@ -48,8 +50,10 @@
     &_cart {
       svg {
         fill: $color-white;
+      }
 
-        &:active {
+      &:active {
+        svg {
           fill: $color-accent;
         }
       }
