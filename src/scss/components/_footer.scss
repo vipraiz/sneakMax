@@ -2,9 +2,65 @@
   padding: 28px 0;
   background-color: $color-text;
 
+  &__left {
+    @include tablet {
+      margin-bottom: $second-offset;
+    }
+  }
+
   &__container {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @include tablet {
+      flex-direction: column;
+    }
+  }
+
+  &__nav {
+    .nav__list {
+      @include small-tablet {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      @media (max-width: (434px)) {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: $second-offset;
+      }
+    }
+
+    .nav__item {
+      @include small-tablet {
+        margin: 0 $second-offset $second-offset;
+
+        &:not(:last-child) {
+          margin-right: $second-offset;
+        }
+      }
+
+      @media (max-width: (434px)) {
+        margin: 0;
+
+        &:not(:last-child) {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
+  @include tablet {
+    padding: $second-offset 0;
+  }
+
+  @include small-tablet {
+    padding-bottom: 0;
+  }
+
+  @media (max-width: (434px)) {
+    padding-bottom: $second-offset;
   }
 }

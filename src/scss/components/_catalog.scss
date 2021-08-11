@@ -1,12 +1,49 @@
 .catalog {
+  position: relative;
   padding: 60px 0;
 
   &__title {
     margin-bottom: $main-offset;
+
+    @include mobile {
+      margin-bottom: $second-offset;
+    }
   }
 
   &__left {
     grid-column: 3 span;
+
+    @include tablet {
+      grid-column: 12 span;
+    }
+  }
+
+  &__props {
+    @include tablet {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: $second-offset;
+    }
+
+    @media (max-width: 480px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__prop {
+    margin-bottom: $second-offset;
+
+    &_no-margin {
+      margin-bottom: 0;
+    }
+
+    @include tablet {
+      width: 100%;
+
+      &:not(:last-child) {
+        margin-right: $second-offset;
+      }
+    }
   }
 
   &__grid {
@@ -14,6 +51,10 @@
     flex-direction: column;
     align-items: center;
     grid-column: 9 span;
+
+    @include tablet {
+      grid-column: 12 span;
+    }
   }
 
   &__subtitle {
@@ -30,18 +71,23 @@
     color: $color-text;
   }
 
-  &__prop {
-    margin-bottom: $second-offset;
-  }
-
   &__prop-checkboxes {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+
+    .custom-checkbox {
+      margin-bottom: $small-offset;
+
+      &:not(:last-child) {
+        margin-right: $small-offset;
+      }
+    }
   }
 
   &__apply {
-    margin-bottom: $second-offset;
+    margin: 0 auto $second-offset;
     width: 100%;
+    max-width: 320px;
 
     &.focus-visible {
       outline: 2px solid $color-accent;
@@ -57,6 +103,10 @@
       outline: 2px solid $color-text;
       outline-offset: 2px;
     }
+
+    @include mobile {
+      margin-top: $second-offset;
+    }
   }
 
   &__not-found-message {
@@ -65,6 +115,10 @@
     font: $font-prehigh-book;
     text-align: center;
     color: $color-text;
+
+    @include tablet {
+      grid-column: 12 span;
+    }
   }
 
   &__reset {
@@ -96,6 +150,14 @@
       color: $color-accent-active;
     }
   }
+
+  @include tablet {
+    padding: $main-offset 0;
+  }
+
+  @include mobile {
+    padding: $second-offset 0;
+  }
 }
 
 .catalog__reset.focus-visible {
@@ -114,6 +176,18 @@
     display: grid;
     grid-auto-flow: row;
     grid-column: 3 span;
+
+    @include mobile {
+      grid-column: 2 span;
+    }
+
+    @media (max-width: 380px) {
+      grid-column: 4 span;
+    }
+  }
+
+  @include mobile {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 

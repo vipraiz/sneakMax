@@ -1,14 +1,31 @@
 .faq {
+  position: relative;
   padding: $big-offset 0;
 
   &__title {
     margin-bottom: $main-offset;
+
+    @include mobile {
+      margin-bottom: $second-offset;
+    }
   }
 
   &__list {
     margin: 0 auto;
     padding: 0 $second-offset;
     max-width: calc(880px + 2 * #{$second-offset});
+
+    @include mobile {
+      padding: 0;
+    }
+  }
+
+  @include tablet {
+    padding: $main-offset 0;
+  }
+
+  @include mobile {
+    padding: $second-offset 0;
   }
 }
 
@@ -28,6 +45,10 @@
 
     &.focus-visible {
       outline: 2px solid $color-text;
+    }
+
+    @include mobile {
+      padding: $second-offset 0;
     }
   }
 
@@ -51,6 +72,10 @@
     opacity: 0;
     transition: all 0.3s ease-in-out;
     will-change: max-height;
+
+    @include mobile {
+      padding-right: $main-offset;
+    }
   }
 
   &:first-child {

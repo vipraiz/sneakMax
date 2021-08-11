@@ -13,10 +13,18 @@
   &__title {
     margin-bottom: $main-offset;
     color: $color-white;
+
+    @include mobile {
+      margin-bottom: $second-offset;
+    }
   }
 
   &__item {
     grid-column: 4 span;
+
+    @include mobile {
+      grid-column: 2 span;
+    }
   }
 
   &__img {
@@ -40,9 +48,27 @@
     display: block;
     margin-bottom: $second-offset;
     font: $font-prehigh-book;
+
+    @include mobile {
+      font-size: 22px;
+    }
   }
 
   &__post {
     font: $font-middle-book;
+
+    @include mobile {
+      font-size: 15px;
+    }
+  }
+
+  @include tablet {
+    padding: $main-offset 0;
+    background-size: 50%;
+  }
+
+  @include mobile {
+    padding: $second-offset 0;
+    background-size: 0;
   }
 }

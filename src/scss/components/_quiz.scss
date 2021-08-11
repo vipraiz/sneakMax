@@ -1,10 +1,19 @@
 .quiz {
+  position: relative;
   padding: $big-offset 0;
 
   &__content {
     border-radius: 4px;
     padding: $main-offset 100px;
     background-color: $color-bg;
+
+    @include tablet {
+      padding: $second-offset 50px;
+    }
+
+    @include mobile {
+      padding: $second-offset $small-offset;
+    }
   }
 
   &__title {
@@ -17,6 +26,14 @@
     padding-bottom: $small-offset;
     font: $font-middle-book;
     color: $color-jumbo;
+  }
+
+  @include tablet {
+    padding: $main-offset 0;
+  }
+
+  @include mobile {
+    padding: $second-offset 0;
   }
 }
 
@@ -39,6 +56,17 @@
     padding-bottom: $main-offset;
     min-height: 368px;
     gap: $grid-gap 70px;
+
+    @include small-tablet {
+      gap: $grid-gap;
+    }
+
+    @include mobile {
+      grid-auto-rows: 115px;
+      grid-template-columns: repeat(2, 1fr);
+      padding-bottom: $second-offset;
+      min-height: 290px;
+    }
   }
 
   &__image {
@@ -53,6 +81,10 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+
+    @include mobile {
+      height: 80px;
     }
   }
 
@@ -80,6 +112,15 @@
       outline: 2px solid $color-text-hover;
       outline-offset: -4px;
     }
+
+    @media (max-width: 520px) {
+      width: 280px;
+      height: 230px;
+    }
+
+    @media (max-width: 420px) {
+      width: 100%;
+    }
   }
 }
 
@@ -101,6 +142,10 @@
     padding: $main-offset;
     max-width: 655px;
     background: $color-cameo;
+
+    @include tablet {
+      margin: 0 auto;
+    }
   }
 
   &__title {
@@ -110,6 +155,10 @@
     font-size: 36px;
     line-height: 140%;
     color: $color-white;
+
+    @include tablet {
+      font-size: 30px;
+    }
   }
 
   &__descr {
@@ -140,6 +189,13 @@
       outline: 2px solid $color-text;
       outline-offset: 2px;
     }
+
+    @include mobile {
+      display: block;
+      margin: 0 auto;
+      padding: 19px 0;
+      width: 100%;
+    }
   }
 
   &__decorate {
@@ -152,6 +208,10 @@
     background-size: cover;
     background-repeat: no-repeat;
     transform: translateX(100%);
+
+    @include tablet {
+      display: none;
+    }
   }
 }
 
@@ -162,6 +222,10 @@
     &::before,
     &::after {
       top: calc(100% - 22px);
+    }
+
+    @include mobile {
+      font-size: 15px;
     }
   }
 }

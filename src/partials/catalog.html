@@ -1,82 +1,95 @@
 <section class="catalog">
+  <div class="anchor" id="catalog"></div>
   <div class="container catalog__container">
     <h2 class="title catalog__title">Каталог</h2>
     <div class="catalog__content grid">
       <div class="catalog__left">
         <div class="catalog-filters">
           <h3 class="catalog__subtitle">Подбор по&nbsp;параметрам</h3>
-          <div class="catalog__prop">
-            <strong class="catalog__caption">Цена, руб</strong>
-            <div class="catalog-price catalog__prop-inner">
-              <div class="catalog-price__wrapper">
-                <input type="text" class="catalog-price__input" id="input-0" />
-                <input type="text" class="catalog-price__input" id="input-1" />
+          <div class="catalog__props">
+            <div class="catalog__props-wrapper">
+              <div class="catalog__prop">
+                <strong class="catalog__caption">Цена, руб</strong>
+                <div class="catalog-price catalog__prop-inner">
+                  <div class="catalog-price__wrapper">
+                    <input
+                      type="text"
+                      class="catalog-price__input"
+                      id="input-0"
+                    />
+                    <input
+                      type="text"
+                      class="catalog-price__input"
+                      id="input-1"
+                    />
+                  </div>
+                  <div class="catalog-price__element" id="range-slider"></div>
+                </div>
               </div>
-              <div class="catalog-price__element" id="range-slider"></div>
+              <div class="catalog__prop catalog__prop_no-margin">
+                <strong class="catalog__caption">Пол</strong>
+                <div class="catalog__prop-inner catalog__prop-checkboxes">
+                  <label class="custom-checkbox">
+                    <input
+                      type="checkbox"
+                      class="custom-checkbox__field catalog-filters__male"
+                    />
+                    <span class="custom-checkbox__content">мужской</span>
+                  </label>
+                  <label class="custom-checkbox">
+                    <input
+                      type="checkbox"
+                      class="custom-checkbox__field catalog-filters__female"
+                    />
+                    <span class="custom-checkbox__content">женский</span>
+                  </label>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="catalog__prop">
-            <strong class="catalog__caption">Пол</strong>
-            <div class="catalog__prop-inner catalog__prop-checkboxes">
-              <label class="custom-checkbox">
-                <input
-                  type="checkbox"
-                  class="custom-checkbox__field catalog-filters__male"
-                />
-                <span class="custom-checkbox__content">мужской</span>
-              </label>
-              <label class="custom-checkbox">
-                <input
-                  type="checkbox"
-                  class="custom-checkbox__field catalog-filters__female"
-                />
-                <span class="custom-checkbox__content">женский</span>
-              </label>
-            </div>
-          </div>
-          <div class="catalog__prop">
-            <strong class="catalog__caption">Размер</strong>
-            <div class="catalog__prop-inner">
-              <table class="sizes-table">
-                <caption>
-                  Таблица размеров
-                </caption>
-                <tbody>
-                  <tr>
-                    <td class="sizes-table__td">
-                      <button class="sizes-table__btn btn-reset">35</button>
-                    </td>
-                    <td class="sizes-table__td">
-                      <button class="sizes-table__btn btn-reset">36</button>
-                    </td>
-                    <td class="sizes-table__td">
-                      <button class="sizes-table__btn btn-reset">37</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="sizes-table__td">
-                      <button class="sizes-table__btn btn-reset">38</button>
-                    </td>
-                    <td class="sizes-table__td">
-                      <button class="sizes-table__btn btn-reset">39</button>
-                    </td>
-                    <td class="sizes-table__td">
-                      <button class="sizes-table__btn btn-reset">40</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="sizes-table__td">
-                      <button class="sizes-table__btn btn-reset">41</button>
-                    </td>
-                    <td class="sizes-table__td">
-                      <button class="sizes-table__btn btn-reset">42</button>
-                    </td>
-                    <td class="sizes-table__td">
-                      <button class="sizes-table__btn btn-reset">43</button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+            <div class="catalog__prop catalog__prop_table">
+              <strong class="catalog__caption">Размер</strong>
+              <div class="catalog__prop-inner">
+                <table class="sizes-table">
+                  <caption>
+                    Таблица размеров
+                  </caption>
+                  <tbody>
+                    <tr>
+                      <td class="sizes-table__td">
+                        <button class="sizes-table__btn btn-reset">35</button>
+                      </td>
+                      <td class="sizes-table__td">
+                        <button class="sizes-table__btn btn-reset">36</button>
+                      </td>
+                      <td class="sizes-table__td">
+                        <button class="sizes-table__btn btn-reset">37</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="sizes-table__td">
+                        <button class="sizes-table__btn btn-reset">38</button>
+                      </td>
+                      <td class="sizes-table__td">
+                        <button class="sizes-table__btn btn-reset">39</button>
+                      </td>
+                      <td class="sizes-table__td">
+                        <button class="sizes-table__btn btn-reset">40</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="sizes-table__td">
+                        <button class="sizes-table__btn btn-reset">41</button>
+                      </td>
+                      <td class="sizes-table__td">
+                        <button class="sizes-table__btn btn-reset">42</button>
+                      </td>
+                      <td class="sizes-table__td">
+                        <button class="sizes-table__btn btn-reset">43</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
           <div class="catalog-filters__btns">

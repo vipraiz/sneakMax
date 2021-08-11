@@ -54,15 +54,19 @@ if (catalogList) {
 
   modal = new GraphModal({
     isOpen: (modal) => {
-      modal.modal.querySelectorAll(".modal__close").forEach((element) => {
-        element.setAttribute("disabled", "disabled");
-      });
+      if (document.body.clientWidth > 768) {
+        modal.modal.querySelectorAll(".modal__close").forEach((element) => {
+          element.setAttribute("disabled", "disabled");
+        });
+      }
       if (modal.modalContainer.classList.contains("prod-modal")) {
         const openBtnId = modal.previousActiveElement.dataset.id;
         if (openBtnId) {
           loadModalData(openBtnId);
         } else {
           console.log(modal);
+          if (modal.previousActiveElement === document.querySelector("body"))
+            console.log(111);
         }
       }
 
@@ -182,6 +186,7 @@ if (catalogList) {
                   </div>
                 </div>
                 <button href="#" class="product__title btn-reset"
+                  tabindex="-1"
                   data-graph-path="prod-modal"
                   data-id="${item.id}">
                   ${item.title}
@@ -196,6 +201,30 @@ if (catalogList) {
         return true;
       })
       .then((needCartLogic) => {
+        const productBtns = catalogList.querySelectorAll(".product__btn");
+        productBtns.forEach((element) => {
+          element.addEventListener(
+            "focus",
+            (e) => {
+              e.currentTarget
+                .closest(".product__btns")
+                .classList.add("product__btns_active");
+            },
+            true
+          );
+        });
+
+        productBtns.forEach((element) => {
+          element.addEventListener(
+            "blur",
+            (e) => {
+              e.currentTarget
+                .closest(".product__btns")
+                .classList.remove("product__btns_active");
+            },
+            true
+          );
+        });
         if (needCartLogic) {
           cartLogic();
         }
@@ -451,11 +480,11 @@ if (catalogList) {
               `
             <li class="mini-cart__item" data-id="${dataItem.id}">
               <article class="mini-cart__product mini-product">
-                <div class="mini-product__image">
-                  <img src="${dataItem.mainImage}" alt="${
-                dataItem.title
-              }" data-graph-path="prod-modal" data-id="${dataItem.id}">
-                </div>
+                <button tabindex="-1" class="mini-product__image btn-reset" data-graph-path="prod-modal" data-id="${
+                  dataItem.id
+                }">
+                  <img src="${dataItem.mainImage}" alt="${dataItem.title}">
+                </button>
                 <div class="mini-product__content">
                   <div class="mini-product__text">
                     <button class="mini-product__title btn-reset" data-graph-path="prod-modal" data-id="${

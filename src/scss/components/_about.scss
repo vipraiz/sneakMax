@@ -10,17 +10,25 @@
     justify-content: space-between;
   }
 
-  // &__figure {
-  //   position: absolute;
-  //   left: 0;
-  //   top: 0;
-  // }
-
   &__left {
     margin-right: $second-offset;
     padding: $main-offset 0;
     width: 40%;
     transform: translateY($main-offset);
+
+    @include tablet {
+      transform: translateY($second-offset);
+    }
+
+    @include small-tablet {
+      margin-right: 0;
+      width: 100%;
+      transform: translateY(0);
+    }
+
+    @include mobile {
+      padding: $second-offset 0;
+    }
   }
 
   &__title {
@@ -36,6 +44,10 @@
     &::before,
     &::after {
       content: "";
+    }
+
+    @include small-tablet {
+      max-width: 480px;
     }
   }
 
@@ -61,5 +73,17 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+
+    @include tablet {
+      height: 480px;
+    }
+
+    @include small-tablet {
+      display: none;
+    }
+  }
+
+  @include small-tablet {
+    background-size: 0;
   }
 }

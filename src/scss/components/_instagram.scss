@@ -1,19 +1,31 @@
 .instagram {
+  position: relative;
   padding: $big-offset 0;
 
   &__container {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
+
+    @include tablet {
+      flex-direction: column-reverse;
+      align-items: center;
+    }
   }
 
   &__left {
-    // flex-shrink: 0;
-    // width: 380px;
     flex: 0 0 380px;
     border-radius: 4px;
     color: $color-white;
     background-color: $color-main;
+
+    @include tablet {
+      width: 480px;
+    }
+
+    @include mobile {
+      width: 100%;
+    }
   }
 
   &__title {
@@ -48,6 +60,14 @@
     flex-direction: column;
     align-items: center;
     margin: 0 $big-offset;
+
+    @include tablet {
+      margin-bottom: $second-offset;
+    }
+
+    @include mobile {
+      margin: 0 0 $second-offset;
+    }
   }
 
   &__logo {
@@ -79,6 +99,11 @@
     grid-template-rows: repeat(2, 160px);
     width: 100%;
     gap: 15px;
+
+    @include small-tablet {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(4, 160px);
+    }
   }
 
   &__item {
@@ -89,6 +114,10 @@
     &_big {
       grid-column: 2 span;
       grid-row: 2 span;
+
+      @include small-tablet {
+        order: 1;
+      }
     }
   }
 
@@ -96,6 +125,10 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  @include tablet {
+    padding: $main-offset 0;
   }
 }
 

@@ -1,7 +1,8 @@
 .cart-modal {
   border-radius: 4px;
   padding: $main-offset;
-  width: 580px;
+  width: 90%;
+  max-width: 580px;
 
   .modal__close {
     display: none;
@@ -12,6 +13,11 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: $main-offset;
+
+    @media (max-width: 450px) {
+      flex-direction: column;
+      margin-bottom: $second-offset;
+    }
   }
 
   &__title {
@@ -19,6 +25,10 @@
     font: $font-prehigh-regular;
     font-weight: 700;
     color: $color-text;
+
+    @media (max-width: 450px) {
+      margin-bottom: $second-offset;
+    }
   }
 
   &__order-number {
@@ -45,6 +55,14 @@
       outline: 2px solid $color-text;
       outline-offset: 2px;
     }
+
+    @include mobile {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: $second-offset;
   }
 }
 
@@ -63,7 +81,12 @@
     span {
       font: $font-middle-regular;
       font-weight: 700;
+      font-size: inherit;
       color: $color-text;
+    }
+
+    @include mobile {
+      font-size: 14px;
     }
   }
 
@@ -77,6 +100,10 @@
 
     &_visible {
       display: block;
+    }
+
+    @include mobile {
+      margin-top: 0;
     }
   }
 
@@ -135,6 +162,10 @@
       &::before {
         transform: scaleX(1);
       }
+    }
+
+    @include mobile {
+      font-size: 14px;
     }
   }
 

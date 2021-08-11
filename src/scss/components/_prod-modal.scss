@@ -1,10 +1,24 @@
+.modal {
+  @include tablet {
+    &::before {
+      display: none;
+    }
+  }
+}
+
 .prod-modal {
   border-radius: 4px;
   padding: $main-offset;
-  width: 1140px;
+  width: 90%;
+  max-width: 1140px;
 
   .modal__close {
+    z-index: 100;
     display: none;
+
+    @include small-tablet {
+      display: block;
+    }
   }
 
   &__top {
@@ -12,25 +26,19 @@
     grid-template-columns: 50% calc(50% - #{$second-offset});
     margin-bottom: $main-offset;
     gap: $second-offset;
+
+    @include small-tablet {
+      grid-template-columns: 100%;
+      margin-bottom: $second-offset;
+    }
   }
-
-  // &__middle {
-  //   display: grid;
-  //   grid-template-columns: 50% calc(50% - #{$second-offset});
-  //   margin-bottom: $main-offset;
-  //   gap: $second-offset;
-  // }
-
-  // &__bottom {
-  //   margin-bottom: $main-offset;
-  // }
 
   &__video {
     overflow: hidden;
     margin-top: $main-offset;
     border-radius: 4px;
     width: 100%;
-    height: 450px;
+    aspect-ratio: 16 / 9;
 
     iframe {
       display: block;
@@ -39,6 +47,14 @@
       height: 100%;
       object-fit: cover;
     }
+
+    @include small-tablet {
+      margin-top: $second-offset;
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: $second-offset;
   }
 }
 
@@ -53,6 +69,10 @@
       max-height: 460px;
       object-fit: cover;
     }
+  }
+
+  @include small-tablet {
+    order: 1;
   }
 }
 
@@ -69,10 +89,22 @@
     font: $font-middle-book;
     line-height: 1;
     color: $color-gray;
+
+    @include small-tablet {
+      margin-bottom: $second-offset;
+    }
   }
 
   &__vendor {
     margin-right: $main-offset;
+
+    @include tablet {
+      margin-right: $small-offset;
+    }
+
+    @include mobile {
+      font-size: 14px;
+    }
   }
 
   &__quantity {
@@ -116,6 +148,10 @@
   &__price {
     display: flex;
     align-items: center;
+
+    @include small-tablet {
+      margin-bottom: $second-offset;
+    }
   }
 
   &__current-price {
@@ -138,6 +174,23 @@
     &.focus-visible {
       outline: 2px solid $color-text;
     }
+
+    @include small-tablet {
+      margin: 0 auto;
+      width: 400px;
+    }
+
+    @include mobile {
+      width: 100%;
+    }
+  }
+
+  @include tablet {
+    padding-right: 0;
+  }
+
+  @include small-tablet {
+    order: 3;
   }
 }
 
@@ -160,6 +213,10 @@
     width: 15px;
     height: 12px;
     fill: currentColor;
+  }
+
+  @include small-tablet {
+    order: 4;
   }
 }
 
@@ -212,14 +269,17 @@
 }
 
 .modal-preview {
+  --size-col: 70px;
+
   display: grid;
-  grid-column-gap: 22px;
-  grid-template-columns: repeat(6, 70px);
+  grid-column-gap: calc((100% - var(--size-col) * 6) / 5);
+  grid-template-columns: repeat(6, var(--size-col));
+  grid-template-rows: 75px;
 
   &__item {
     overflow: hidden;
     border-radius: 4px;
-    height: 75px;
+    height: 100%;
     transition: opacity 0.3s ease-in-out;
     cursor: pointer;
 
@@ -245,6 +305,41 @@
       outline: 1px solid $color-gray;
     }
   }
+
+  @include tablet {
+    --size-col: 60px;
+
+    grid-template-rows: 63px;
+  }
+
+  @media (max-width: 958px) {
+    --size-col: 50px;
+
+    grid-template-rows: 52px;
+  }
+
+  @include small-tablet {
+    --size-col: 70px;
+
+    order: 2;
+    grid-template-rows: 75px;
+  }
+
+  @media (max-width: 600px) {
+    --size-col: 60px;
+
+    grid-template-rows: 63px;
+  }
+
+  @media (max-width: 514px) {
+    --size-col: 50px;
+
+    grid-template-rows: 52px;
+  }
+
+  @media (max-width: 470px) {
+    display: none;
+  }
 }
 
 .swiper-slide {
@@ -260,10 +355,19 @@
     &:first-child {
       margin-right: $second-offset;
       width: 50%;
+
+      @media (max-width: 600px) {
+        margin: 0 0 $second-offset;
+        width: 100%;
+      }
     }
 
     &:last-child {
       width: calc(50% - #{$second-offset});
+
+      @media (max-width: 600px) {
+        width: 100%;
+      }
     }
   }
 
@@ -279,6 +383,10 @@
     max-width: 430px;
     font: $font-middle-book;
     color: $color-text;
+  }
+
+  @media (max-width: 600px) {
+    flex-direction: column;
   }
 }
 

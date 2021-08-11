@@ -91,6 +91,10 @@ a {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: $grid-gap;
+
+  @include mobile {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .btn {
@@ -272,6 +276,17 @@ a {
     border-radius: 4px;
     width: 0;
     height: 0;
+
+    @include mobile {
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+    }
+  }
+
+  @include mobile {
+    left: -130px;
+    max-width: 280px;
   }
 }
 
@@ -305,5 +320,20 @@ a {
   &.focus-visible {
     outline: 2px solid $color-text-hover;
     outline-offset: -4px;
+  }
+
+  @include mobile {
+    font-size: 14px;
+  }
+}
+
+.anchor {
+  position: absolute;
+  top: -70px;
+  height: 70px;
+
+  @media (max-width: 810px) {
+    top: -50px;
+    height: 50px;
   }
 }

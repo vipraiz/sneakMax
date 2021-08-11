@@ -13,8 +13,27 @@
     height: 100%;
     background: rgba(255, 255, 255, 0.6);
     opacity: 0;
-    visibility: hidden;
     transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+
+    &_active {
+      opacity: 1;
+    }
+
+    @include small-tablet {
+      display: flex;
+      justify-content: space-around;
+      padding: 0 $second-offset;
+    }
+
+    @media (max-width: 440px) {
+      padding: 0 $small-offset;
+    }
+
+    @media (max-width: 380px) {
+      display: flex;
+      justify-content: space-around;
+      padding: 0 $second-offset;
+    }
   }
 
   &__btn {
@@ -87,6 +106,25 @@
         transform: scale(1.1);
       }
     }
+
+    @include small-tablet {
+      width: 60px;
+      height: 60px;
+
+      &:first-child {
+        margin-right: 0;
+      }
+    }
+
+    @media (max-width: 440px) {
+      width: 50px;
+      height: 50px;
+    }
+
+    @media (max-width: 380px) {
+      width: 80px;
+      height: 80px;
+    }
   }
 
   &__image {
@@ -133,7 +171,6 @@
   &:hover {
     .product__btns {
       opacity: 1;
-      visibility: visible;
     }
   }
 }
@@ -165,6 +202,10 @@
       height: 100%;
       object-fit: cover;
     }
+
+    @include mobile {
+      width: 80px;
+    }
   }
 
   &__content {
@@ -181,8 +222,7 @@
   &__title {
     display: block;
     justify-self: start;
-    margin: 0;
-    margin-bottom: $small-offset;
+    margin: 0 10px $small-offset 0;
     font: $font-book;
     line-height: 20px;
     text-align: left;
@@ -204,6 +244,7 @@
   }
 
   &__delete {
+    flex-shrink: 0;
     width: 20px;
     height: 20px;
     font-size: 0;
@@ -266,6 +307,7 @@
     &__content {
       display: flex;
       flex-grow: 1;
+      flex-wrap: wrap;
       align-items: center;
     }
 
@@ -277,8 +319,7 @@
     &__title {
       display: block;
       justify-self: start;
-      margin: 0;
-      margin-bottom: $small-offset;
+      margin: 0 10px $small-offset 0;
       font: $font-book;
       line-height: 20px;
       text-align: left;
@@ -293,6 +334,7 @@
 
     &__delete {
       position: relative;
+      margin-top: $small-offset;
       width: auto;
       height: auto;
       font: $font-book;

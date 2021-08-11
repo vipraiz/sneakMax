@@ -1,4 +1,6 @@
 .cart {
+  z-index: 3;
+
   &__btn {
     display: flex;
     align-items: center;
@@ -33,6 +35,10 @@
       transform: scaleX(0);
       transform-origin: left;
       transition: transform 0.3s ease-in-out;
+    }
+
+    @media (max-width: 876px) {
+      display: none;
     }
   }
 
@@ -96,7 +102,11 @@
     max-height 0.6s ease-in-out;
 
   &__top {
-    max-height: 323px;
+    max-height: clamp(50px, calc(70vh - 70px), 323px);
+
+    @media (max-width: 810px) {
+      max-height: clamp(50px, calc(70vh - 50px), 323px);
+    }
 
     .simplebar-track.simplebar-vertical {
       right: 5px;
@@ -126,6 +136,16 @@
     padding: $second-offset;
     box-shadow: 0 -4px 10px rgba(0, 13, 84, 0.1);
     background-color: $color-white;
+
+    @include mobile {
+      flex-wrap: wrap;
+    }
+  }
+
+  &__total {
+    @include mobile {
+      margin-bottom: $second-offset;
+    }
   }
 
   &__txt {
@@ -146,12 +166,27 @@
     &.focus-visible {
       outline: 2px solid $color-text;
     }
+
+    @include mobile {
+      width: 100%;
+    }
   }
 
   &_visible {
-    max-height: 600px;
+    max-height: calc(100vh - 70px);
     opacity: 1;
     visibility: visible;
+
+    @media (max-width: 810px) {
+      max-height: calc(100vh - 50px);
+    }
+  }
+
+  @include mobile {
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: calc(100% - 30px);
   }
 }
 

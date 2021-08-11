@@ -1,4 +1,5 @@
 .contacts {
+  position: relative;
   padding: $big-offset 0;
   background-color: #f3f6f6;
 
@@ -6,20 +7,37 @@
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
+
+    @include tablet {
+      flex-wrap: wrap;
+    }
   }
 
   &__text {
     flex: 1 1 auto;
     margin-right: $second-offset;
+
+    @include tablet {
+      margin-right: 0;
+      margin-bottom: $second-offset;
+    }
   }
 
   &__title {
     margin-bottom: $big-offset;
+
+    @include mobile {
+      margin-bottom: $second-offset;
+    }
   }
 
   &__item {
     margin-bottom: $main-offset;
     font-style: normal;
+
+    @include mobile {
+      margin-bottom: $second-offset;
+    }
   }
 
   &__subtitle {
@@ -34,12 +52,20 @@
 
     &_main {
       margin-bottom: $main-offset;
+
+      @include mobile {
+        margin-bottom: $second-offset;
+      }
     }
   }
 
   &__address {
     display: block;
     color: $color-text;
+
+    @include mobile {
+      font-size: 14px;
+    }
   }
 
   &__phone {
@@ -71,5 +97,25 @@
     background-position: center;
     background-size: 25%;
     background-repeat: no-repeat;
+
+    @include tablet {
+      width: 100%;
+    }
+
+    @include small-tablet {
+      height: 425px;
+    }
+
+    @include mobile {
+      height: 350px;
+    }
+  }
+
+  @include tablet {
+    padding: $main-offset 0;
+  }
+
+  @include mobile {
+    padding: $second-offset 0;
   }
 }
