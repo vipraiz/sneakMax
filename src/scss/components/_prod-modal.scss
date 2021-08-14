@@ -34,13 +34,16 @@
   }
 
   &__video {
+    position: relative;
     overflow: hidden;
     margin-top: $main-offset;
     border-radius: 4px;
     width: 100%;
+    background-color: $color-black;
     aspect-ratio: 16 / 9;
 
-    iframe {
+    iframe,
+    img {
       display: block;
       border: none;
       width: 100%;
@@ -392,4 +395,35 @@
 
 .prod-bottom__descr + .prod-bottom__descr {
   margin-top: 5px;
+}
+
+.video-play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  &.focus-visible {
+    fill: #f00;
+    fill-opacity: 1;
+  }
+}
+
+.video-play-shape {
+  fill: #212121;
+  fill-opacity: 0.8;
+}
+
+.video-play-icon {
+  fill: #fff;
+}
+
+.video-play:focus {
+  outline: none;
+}
+
+.prod-modal__video:hover .video-play-shape,
+.prod-modal__video:focus .video-play-shape {
+  fill: #f00;
+  fill-opacity: 1;
 }

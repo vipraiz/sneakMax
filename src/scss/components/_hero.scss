@@ -74,5 +74,6 @@
 
   @include mobile {
     padding: $second-offset 0;
+    height: calc(100 * var(--vh));
   }
 }

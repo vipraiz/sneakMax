@@ -1,5 +1,3 @@
-// ymaps.ready(init);
-
 function init() {
   fetch("data/data-map-settings.json")
     .then((response) => {
@@ -10,7 +8,8 @@ function init() {
         "map",
         {
           center: data[0].coords,
-          zoom: data[0].zoom,
+          zoom:
+            document.body.clientWidth > 576 ? data[0].zoom : data[0].zoom - 1,
           controls: ["zoomControl"],
           behaviors: ["drag", "dblClickZoom", "multiTouch"],
         },

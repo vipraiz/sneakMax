@@ -110,7 +110,6 @@ const images = () => {
     "./src/img/**.jpg",
     "./src/img/**.png",
     "./src/img/**.jpeg",
-    "./src/img/**.ico",
     "./src/img/*.svg",
     "./src/img/**/*.jpg",
     "./src/img/**/*.png",

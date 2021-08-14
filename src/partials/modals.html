@@ -78,25 +78,34 @@
           <ul class="list-reset cart-order__list cart-order__list_visible"></ul>
         </div>
       </div>
-      <form action="" class="cart-modal__form">
-        <input
-          type="text"
-          class="input cart-modal__input"
-          name="name"
-          placeholder="Ваше имя"
-        />
-        <input
-          type="tel"
-          class="input cart-modal__input"
-          name="tel"
-          placeholder="Номер телефона"
-        />
-        <input
-          type="email"
-          class="input cart-modal__input"
-          name="email"
-          placeholder="E-mail"
-        />
+      <form class="cart-modal__form">
+        <div class="form-label">
+          <input
+            type="text"
+            class="input cart-modal__input"
+            name="name"
+            placeholder="Ваше имя"
+            data-validate-field="name"
+          />
+        </div>
+        <div class="form-label">
+          <input
+            type="tel"
+            class="input cart-modal__input"
+            name="phone"
+            placeholder="Номер телефона"
+            data-validate-field="phone"
+          />
+        </div>
+        <div class="form-label">
+          <input
+            type="email"
+            class="input cart-modal__input"
+            name="email"
+            placeholder="E-mail"
+            data-validate-field="email"
+          />
+        </div>
         <button class="btn btn-reset btn_primary cart-modal__btn">
           Оформить заказ
         </button>

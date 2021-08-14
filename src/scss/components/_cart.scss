@@ -102,10 +102,10 @@
     max-height 0.6s ease-in-out;
 
   &__top {
-    max-height: clamp(50px, calc(70vh - 70px), 323px);
+    max-height: clamp(50px, calc(70 * var(--vh) - 70px), 323px);
 
     @media (max-width: 810px) {
-      max-height: clamp(50px, calc(70vh - 50px), 323px);
+      max-height: clamp(50px, calc(70vh * var(--vh) - 50px), 323px);
     }
 
     .simplebar-track.simplebar-vertical {
@@ -173,12 +173,12 @@
   }
 
   &_visible {
-    max-height: calc(100vh - 70px);
+    max-height: calc(100 * var(--vh) - 70px);
     opacity: 1;
     visibility: visible;
 
     @media (max-width: 810px) {
-      max-height: calc(100vh - 50px);
+      max-height: calc(100 * var(--vh) - 50px);
     }
   }
 

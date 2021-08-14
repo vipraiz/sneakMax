@@ -37,10 +37,7 @@
     color: $color-gray;
   }
 
-  &__input {
-    color: $color-gray;
-    background-color: #f7f7f7;
-
+  .form-label {
     &:not(:last-of-type) {
       margin-bottom: $small-offset;
     }
@@ -48,6 +45,11 @@
     &:last-of-type {
       margin-bottom: 30px;
     }
+  }
+
+  &__input {
+    color: $color-gray;
+    background-color: #f7f7f7;
   }
 
   &__btn {

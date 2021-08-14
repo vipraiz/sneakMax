@@ -31,9 +31,20 @@
     }
   }
 
+  &__items {
+    @include tablet {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+
   &__item {
     margin-bottom: $main-offset;
     font-style: normal;
+
+    @include tablet {
+      margin-right: $main-offset;
+    }
 
     @include mobile {
       margin-bottom: $second-offset;
@@ -53,7 +64,7 @@
     &_main {
       margin-bottom: $main-offset;
 
-      @include mobile {
+      @include tablet {
         margin-bottom: $second-offset;
       }
     }
@@ -99,7 +110,8 @@
     background-repeat: no-repeat;
 
     @include tablet {
-      width: 100%;
+      margin: 0 auto;
+      width: 80%;
     }
 
     @include small-tablet {
